@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<!-- bean id="helloService" class="com.example.myapp.di.HelloService"/-->
+	<!-- bean id="helloController" class="com.example.myapp.di.HelloController">
+		<constructor-arg ref="helloService"/>
+	</bean-->
+	
+	<!-- bean id="helloController" class="com.example.myapp.di.HelloController">
+		<property name="helloService" ref="helloService"/>
+	</bean-->
+	
+	
+	<bean id="personBean" class="com.example.myapp.Person"><!-- scope="prototype"-->
+		<property name="name" value="JinKyoung"/>
+		<property name="age" value="30"/>
+	</bean>
+
+	<bean id="customer" class="com.example.myapp.Customer">
+		<property name="lists">
+			<list>
+				<value>1</value>
+				<ref bean="personBean"/>
+				<bean class="com.example.myapp.Person">
+					<property name="name" value="HyunJeong"/>
+					<property name="age" value="12"/>
+				</bean>
+			</list>
+		</property>
+
+		<property name="sets">
+			<set>
+				<value>2</value>
+				<ref bean="personBean"/>
+				<bean class="com.example.myapp.Person">
+					<property name="name" value="HyunJun"/>
+					<property name="age" value="11"/>
+				</bean>
+			</set>
+		</property>
+
+		<property name="maps">
+			<map>
+				<entry key="Key1" value="3"/>
+				<entry key="Key2" value-ref="personBean"/>
+				<entry key="Key3">
+					<bean class="com.example.myapp.Person">
+						<property name="name" value="HyunSoo"/>
+						<property name="age" value="8"/>
+					</bean>
+				</entry>
+			</map>
+		</property>
+
+		<property name="props">
+			<props>
+				<prop key="webmaster">webmaster@coderby.com</prop>
+				<prop key="support">support@coderby.com</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<context:component-scan base-package="com.example.myapp.di"/>
+</beans>
