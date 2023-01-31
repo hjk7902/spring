@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    
+    <title>[[#{title}]]</title>
+    <!-- Favicon -->
+    <link th:href="@{/favicon.png}" rel="icon" type="image/png">
+	
+	<link rel="stylesheet" th:href="@{/css/default.css}">
+    
+    <!-- Essential styles -->
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css"> 
+    <link rel="stylesheet" href="/assets/fancybox/jquery.fancybox.css?v=2.1.5" media="screen"> 
+
+    <!-- Boomerang styles -->
+    <link id="wpStylesheet" rel="stylesheet" type="text/css" href="/css/global-style.css" media="screen">  
+
+    <!-- Boomerang styles -->
+    <link rel="stylesheet" type="text/css" href="/css/side-menu.css" media="screen">  
+
+    <!-- Required JS async 또는 defer 속성을 넣으면 안됩니다.-->
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+
+	<!-- Essentials -->
+	<script async th:src="@{/assets/bootstrap/js/bootstrap.min.js}"></script>
+	<script async src="/js/jquery.hoverup.js"></script>
+	<script async src="/js/jquery.hoverdir.js"></script>
+	<script async src="/js/jquery.stellar.js"></script>
+	
+	</script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $("#locales").change(function () {
+	        var selectedOption = $('#locales').val();
+	        if (selectedOption != ''){
+	            window.location.replace('?lang=' + selectedOption);
+	        }
+	    });
+	});
+	</script>
+</head>
+</html>
