@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd">
+
+	<!-- bean id="helloService" class="com.example.myapp.aop.HelloServiceProxy"/-->
+	<bean id="helloService" class="com.example.myapp.aop.HelloService"/>
+	
+
+	<bean id="helloController" class="com.example.myapp.aop.HelloController">
+		<property name="helloService" ref="helloService"/>
+	</bean>
+	
+	<bean id="helloLog" class="com.example.myapp.aop.HelloLog"/>
+	<bean id="performanceAspect" class="com.example.myapp.aop.PerformanceAspect"/>
+	
+	<!-- 어떤 핵심코드에 어떤 공통코드가 언제 실행되는지 설정 -->
+	<aop:config>
+		<!-- 핵심코드(Pointcut) 설정 -->
+		<aop:pointcut id="helloPointcut"
+					 expression="execution(* com.example..HelloService.sayHello(..))"/>
+		<!-- hello 포인트컷에 before 어드바이스 설정 -->
+		<aop:aspect ref="helloLog">
+			<aop:before pointcut-ref="helloPointcut" method="log"/>
+		</aop:aspect>
+		<aop:aspect ref="performanceAspect">
+			<aop:around pointcut-ref="helloPointcut" method="trace"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>
