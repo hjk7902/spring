@@ -1,0 +1,190 @@
+/*-----------------------------------*/
+/* Select Elements */
+/*-----------------------------------*/
+
+.cusel,
+#cuselBox .cusel-scroll-wrap,
+#cuselBox .jScrollPaneContainer,
+#cuselBox .cusel-scroll-pane {
+    width: 100% !important;
+}
+.cusel {
+    height: 50px;
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+    padding: 0 30px 0 12px;
+}
+.cuselOpen {z-index: 9999;}
+
+.cuselText label::selection {background-color: transparent;}
+
+/* Right Arrow */
+.cuselFrameRight {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 32px;
+    cursor: pointer;
+}
+.cuselFrameRight:before {
+    content: '';
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 9px solid #d0d1d3;
+    position: absolute;
+    top: 19px;
+    right: 14px;
+}
+.cusel:hover .cuselFrameRight:before,
+.cuselOpen .cuselFrameRight:before,
+.cuselFocus .cuselFrameRight:before {
+    border-top-color: #a0a0a0;
+}
+
+/* Selected Item */
+.cuselText {cursor: pointer;} /* Needed for iPad */
+
+.cuselText label {
+    width: 100%;
+    height: 100%;
+    line-height: 48px;
+    font-size: 14px;
+    color: #70808b;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/* Select List */
+#cuselBox {
+    position: absolute;
+    z-index: 9999;
+}
+#cuselBox .jScrollPaneContainer {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #d0d1d3;
+    border-top: none;
+    background: #ebf1f8;
+    border-radius: 2px;
+}
+#cuselBox .cusel-scroll-pane {padding-right: 0 !important;}
+
+#cuselBox span {
+    display: block;
+    cursor: pointer;    /* Needed for iPad */
+}
+#cuselBox span label {
+    display: block;
+    padding: 10px 12px;
+    position: relative;
+    border-top: 1px solid #d0d1d3;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#cuselBox span:first-child label {border-top: none;}
+
+#cuselBox span:hover,
+#cuselBox span.cuselOptHover,
+#cuselBox span.cuselActive {
+    color: #c9376e;
+    background: #DFE3E9;
+}
+
+/* Scrolling */
+#cuselBox .jScrollPaneTrack {
+    height: 100%;
+    width: 4px !important;
+    background: #a0a0a0;
+    background: rgba(160, 160, 160, 0.36);
+    position: absolute;
+    top: 0;
+    right: 4px;
+}
+#cuselBox .jScrollPaneDrag {
+    position: absolute;
+    cursor: pointer;
+    width: 6px !important;
+    height: 26px !important;
+    right: -1px;
+    background: #a0a0a0;
+}
+.jScrollArrowUp,
+.jScrollArrowDown {
+    width: 6px !important;
+    height: 6px;
+    position: absolute;
+    top: 0;
+    right: 3px;
+    cursor: pointer;
+}
+.jScrollArrowDown {
+    top: auto;
+    bottom: 0;
+}
+.jScrollArrowUp:before,
+.jScrollArrowDown:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    border-left: 3px solid transparent;
+    border-right: 3px solid transparent;
+    border-bottom: 6px solid #a0a0a0;
+}
+.jScrollArrowDown:before {
+    border-top: 6px solid #a0a0a0;
+    border-bottom: none;
+}
+
+/*-----------------------------------*/
+/* Select Elements Blue Style */
+/*-----------------------------------*/
+
+.boxed-blue .cusel {height: 42px; padding: 0 40px 0 12px;}
+.boxed-blue .cuselText label {
+    line-height: 40px;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+.boxed-blue .cuselFrameRight {
+    width: 42px;
+    background: #1b538c;
+    border-left: 1px solid #0b3d74;
+    border-radius: 0 1px 1px 0;
+}
+.boxed-blue .cuselFrameRight:before {
+    border-top: 9px solid #fff !important;
+    top: 16px;
+    right: 14px;
+}
+#cuselBox.blue .jScrollPaneContainer {
+    border: 1px solid #0b3d74;
+    border-top: none;
+    background: #164c87;
+}
+#cuselBox.blue span label {
+    padding: 6px 13px;
+    border-top: 1px solid #0b3d74;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+}
+#cuselBox.blue span:first-child label {border-top: none;}
+
+#cuselBox.blue span:hover,
+#cuselBox.blue span.cuselOptHover,
+#cuselBox.blue span.cuselActive {
+    color: #fff;
+    background: #1b538c;
+}
+#cuselBox.blue .jScrollPaneTrack {background: #083080; background: rgba(8, 48, 128, 0.36);}
+#cuselBox.blue .jScrollPaneDrag {background: #083080;}
+#cuselBox.blue .jScrollArrowUp:before {border-bottom-color: #083080;}
+#cuselBox.blue .jScrollArrowDown:before {border-top-color: #083080;}
