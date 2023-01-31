@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<annotation-driven />
+
+	<beans:bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/"/>
+		<beans:property name="suffix" value=".jsp"/>
+	</beans:bean>
+
+	<view-controller path="/" view-name="home"/>
+
+	<resources location="/WEB-INF/resources/" mapping="/**"/>
+	<resources location="/WEB-INF/resources/js/" mapping="/js/**"/>
+	<resources location="/WEB-INF/resources/css/" mapping="/css/**"/>
+	<resources location="/WEB-INF/resources/images/" mapping="/images/**"/>
+	<resources location="/WEB-INF/resources/font-awesome/" mapping="/font-awesome/**"/>
+	<resources location="/WEB-INF/resources/assets/" mapping="/assets/**"/>
+	
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize">
+			<beans:value>50000000</beans:value>
+		</beans:property>
+	</beans:bean>
+	
+	<context:component-scan base-package="com.example.myapp.board.controller"/>
+	<context:component-scan base-package="com.example.myapp.member.controller"/>
+	
+	<!-- <interceptors>
+		<interceptor>
+			<mapping path="/file/**"/>
+			<mapping path="/board/write/**"/>
+			<mapping path="/board/update/**"/>
+			<mapping path="/board/reply/**"/>
+			<mapping path="/board/delete/**"/>
+			<beans:bean class="com.example.myapp.common.filter.LoginInterceptor"/>
+		</interceptor>
+	</interceptors> -->
+	
+</beans:beans>
