@@ -245,18 +245,18 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
-	public String deleteArticle(Board board, HttpSession session, RedirectAttributes attr) {
+	public String deleteArticle(Board board, HttpSession session, RedirectAttributes model) {
 		try {
 			String dbpw = boardService.getPassword(board.getBoardId());
 			if(dbpw.equals(board.getPassword())) {
 				boardService.deleteArticle(board.getBoardId(), board.getReplyNumber());
 				return "redirect:/board/cat/" + board.getCategoryId() + "/" + (Integer)session.getAttribute("page");
 			}else {
-				attr.addFlashAttribute("message", "WRONG_PASSWORD_NOT_DELETED");
+				model.addFlashAttribute("message", "WRONG_PASSWORD_NOT_DELETED");
 				return "redirect:/board/delete/" + board.getBoardId();
 			}
 		}catch(Exception e){
-			attr.addAttribute("message", e.getMessage());
+			model.addAttribute("message", e.getMessage());
 			e.printStackTrace();
 			return "error/runtime";
 		}
