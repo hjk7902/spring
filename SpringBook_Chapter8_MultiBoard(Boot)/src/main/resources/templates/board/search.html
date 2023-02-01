@@ -21,7 +21,7 @@
     </div>
 	[[${message}]]
 	<div class="content">
-		<form action="/board/search/1" method="get">
+		<form th:action="@{/board/search/1}" method="get">
 			<div class="pull-right" style="margin-bottom: 5px;">
 			<div class="col-xs-9">
 		        <input type="text" name="keyword" class="form-control">

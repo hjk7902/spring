@@ -18,11 +18,11 @@
         </div>
     </div>
 	<div class="content">
-	<form action="/member/delete" method="post" class="form-horizontal">
+	<form th:action="@{/member/delete}" method="post" class="form-horizontal">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="password">[[#{MEMBER_PW}]]</label>
       <div class="col-sm-4">
-        <input type="password" name="password" id="password" class="form-control"><h4 style="color:red;">[[#{${message}}]]</h4>
+        <input type="password" name="password" id="password" class="form-control"><h4 style="color:red;" th:if="${message!=null}">[[#{${message}}]]</h4>
       </div>
     </div>
     <div class="form-group">

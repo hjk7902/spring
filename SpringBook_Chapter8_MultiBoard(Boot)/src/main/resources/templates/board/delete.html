@@ -18,7 +18,7 @@
         </div>
     </div>
 	<div class="content">
-		<h3>[[#{DELETE_MSG}]]</h3>
+		<h3>[[#{DELETE_MSG}]]</h3><small th:if="${message != null}">[[#{${message}}]]</small>
 		<form th:action='@{/board/delete}' class="form-inline" method="post">
 		<input type="hidden" name="boardId" th:value="${boardId}">
 		<input type="hidden" name="replyNumber" th:value="${replyNumber}">

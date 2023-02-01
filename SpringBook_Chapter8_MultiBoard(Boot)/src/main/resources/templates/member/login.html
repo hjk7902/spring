@@ -19,7 +19,7 @@
     </div>
 <div class="content">
 <div th:if="${session.email==null}">
-	<form action="/member/login" method="post" class="form-horizontal">
+	<form th:action="@{/member/login}" method="post" class="form-horizontal">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="id">[[#{MEMBER_ID}]]</label>
       <div class="col-sm-8">
@@ -36,7 +36,7 @@
     	<div class="col-sm-offset-2 col-sm-8">
 		<input type="submit" class="btn btn-info" th:value="#{SIGN_IN}">
 		<input type="reset" class="btn btn-info" th:value="#{CANCEL}">
-		<a href="/member/insert" class="btn btn-success">[[#{INSERT_USER_INFO}]]</a>
+		<a th:href="@{/member/insert}" class="btn btn-success">[[#{INSERT_USER_INFO}]]</a>
 		</div>
 	</div>
 	</form>
@@ -45,9 +45,9 @@
 <div th:if="${session.email!=null}">
 	<h4>[[${session.userid}]]</h4>
 	<h4>[[${session.email}]]</h4>
-	[<a href="/member/update">[[#{UPDATE_USER_INFO}]]</a>]
-	[<a href="/member/logout">[[#{SIGN_OUT}]]</a>]
-	[<a href="/member/delete">[[#{EXIT_MEMBER}]]</a>]
+	[<a th:href="@{/member/update}">[[#{UPDATE_USER_INFO}]]</a>]
+	[<a th:href="@{/member/logout}">[[#{SIGN_OUT}]]</a>]
+	[<a th:href="@{/member/delete}">[[#{EXIT_MEMBER}]]</a>]
 </div>
 </div>
 </div>

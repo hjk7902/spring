@@ -18,7 +18,7 @@
         </div>
     </div>
 	<div class="content">
-	<form th:object="${board}" action="/board/update" method="post" enctype="multipart/form-data" class="form-horizontal">
+	<form th:object="${board}" th:action="@{/board/update}" method="post" enctype="multipart/form-data" class="form-horizontal">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="name">[[#{CATEGORY}]]</label>
       <div class="col-sm-4">

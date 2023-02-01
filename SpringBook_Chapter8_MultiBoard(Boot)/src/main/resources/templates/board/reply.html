@@ -18,7 +18,7 @@
         </div>
     </div>
 	<div class="content">
-	<form action="/board/reply" method="post" enctype="multipart/form-data" class="form-horizontal">
+	<form th:action="@{/board/reply}" method="post" enctype="multipart/form-data" class="form-horizontal">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="writer">[[#{WRITER}]]</label>
       <div class="col-sm-2">

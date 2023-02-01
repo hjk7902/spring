@@ -11,7 +11,7 @@
                 <i class="fa fa-bars icon-custom">[[#{title}]]</i>
             </button>
             <p>
-            <a href="/"><div style="padding-left:15px; width:200px">[[#{title}]]</div></a>
+            <a th:href="@{/}"><div style="padding-left:15px; width:200px">[[#{title}]]</div></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
@@ -32,20 +32,20 @@
 				<li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong>[[#{BOARD}]]</strong></a>
                     <ul class="dropdown-menu">
-                    	<li><a href="/board/cat/1">[[#{BOARD}]]</a>
-			        	<li><a href="/board/cat/2">[[#{PDS}]]</a>
-			        	<li><a href="/board/cat/3">[[#{GALLERY}]]</a>
+                    	<li><a th:href="@{/board/cat/1}">[[#{BOARD}]]</a>
+			        	<li><a th:href="@{/board/cat/2}">[[#{PDS}]]</a>
+			        	<li><a th:href="@{/board/cat/3}">[[#{GALLERY}]]</a>
 					</ul>
 				</li>
                 <li class="dropdown">
-                    <a href='<c:url value="/member/login"/>' class="dropdown-toggle" data-toggle="dropdown"><strong>[[#{MEMBER}]]</strong></a>
+                    <a th:href="@{/member/login}" class="dropdown-toggle" data-toggle="dropdown"><strong>[[#{MEMBER}]]</strong></a>
                     <ul class="dropdown-menu">
-                    	<li><a href="/member/login">[[#{MY_INFO}]]</a>
-                        <li><a href="/member/update">[[#{UPDATE_USER_INFO}]]</a>
-                        <li><a href="/member/delete">[[#{EXIT_MEMBER}]]</a>
-                        <li><a href="/member/logout">[[#{SIGN_OUT}]]</a>
+                    	<li><a th:href="@{/member/login}">[[#{MY_INFO}]]</a>
+                        <li><a th:href="@{/member/update}">[[#{UPDATE_USER_INFO}]]</a>
+                        <li><a th:href="@{/member/delete}">[[#{EXIT_MEMBER}]]</a>
+                        <li><a th:href="@{/member/logout}">[[#{SIGN_OUT}]]</a>
                         <li role="separator" class="divider"></li>
-                        <li><a href="/member/insert">[[#{JOIN_MEMBER}]]</a>
+                        <li><a th:href="@{/member/insert}">[[#{JOIN_MEMBER}]]</a>
                     </ul>
                 </li>
                 <li class="dropdown dropdown-aux animate-click" data-animate-in="animated" data-animate-out="animated fadeOutDown" style="z-index:500;">
@@ -67,8 +67,8 @@
                 </li>
                <li>
                <div><br>
-               <a href="/member/login" class="btn btn-danger" th:if="${session.email==null}">[[#{SIGN_IN}]]</a>
-               <a href="/member/login" class="btn btn-danger" th:if="${session.email!=null}">[[#{MY_INFO}]]</a>
+               <a th:href="@{/member/login}" class="btn btn-danger" th:if="${session.email==null}">[[#{SIGN_IN}]]</a>
+               <a th:href="@{/member/login}" class="btn btn-danger" th:if="${session.email!=null}">[[#{MY_INFO}]]</a>
                </div>
                 </li>
             </ul>
