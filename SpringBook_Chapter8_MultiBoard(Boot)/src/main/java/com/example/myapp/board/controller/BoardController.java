@@ -253,7 +253,7 @@ public class BoardController {
 				return "redirect:/board/cat/" + board.getCategoryId() + "/" + (Integer)session.getAttribute("page");
 			}else {
 				attr.addFlashAttribute("message", "WRONG_PASSWORD_NOT_DELETED");
-				return "redirect:/board/delete/"+board.getBoardId();
+				return "redirect:/board/delete/" + board.getBoardId();
 			}
 		}catch(Exception e){
 			attr.addAttribute("message", e.getMessage());
