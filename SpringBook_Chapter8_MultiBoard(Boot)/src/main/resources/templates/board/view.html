@@ -46,7 +46,7 @@
 	</tr>
 	<tr>
 		<td>[[#{CONTENT}]]</td>
-		<td class="board_content">[[${board.content}]]</td>
+		<td class="board_content" th:utext="${board.content}">내용</td>
 	</tr>
     <!-- th:block th:if="${userid!=null}"-->
 	<tr th:if="${board.fileName!=null}">

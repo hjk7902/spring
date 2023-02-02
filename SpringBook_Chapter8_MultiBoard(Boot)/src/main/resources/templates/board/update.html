@@ -45,7 +45,7 @@
       <label class="control-label col-sm-2" for="password">[[#{PASSWORD}]]</label>
       <div class="col-sm-2">
         <input type="password" name="password" id="password" class="form-control" required>
-      </div>${passwordError}
+      </div><span th:if="${passwordError != null}" th:text="${passwordError}"></span>      
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="title">[[#{TITLE}]]</label>

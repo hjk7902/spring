@@ -30,7 +30,7 @@ import com.example.myapp.board.model.BoardUploadFile;
 import com.example.myapp.board.service.IBoardCategoryService;
 import com.example.myapp.board.service.IBoardService;
 
-import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest; // tomcat 9이하면 javax.servlet
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -253,7 +253,7 @@ public class BoardController {
 				return "redirect:/board/cat/" + board.getCategoryId() + "/" + (Integer)session.getAttribute("page");
 			}else {
 				model.addFlashAttribute("message", "WRONG_PASSWORD_NOT_DELETED");
-				return "redirect:/board/delete/" + board.getBoardId();
+				return "redirect:/board/delete" + board.getBoardId();
 			}
 		}catch(Exception e){
 			model.addAttribute("message", e.getMessage());

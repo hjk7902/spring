@@ -30,6 +30,9 @@
 		<div class="form-group">
 		<div class="col-sm-8">
 		<input type="password" name="password" class="form-control" required>
+		<c:if test="${!empty message}">
+		<br><span style="color:red;"><fmt:message key="${message}"/></span>
+		</c:if>
 		</div>
 		<div class="col-sm-2">
 		<input type="submit" class="btn btn-danger" value="<fmt:message key="DELETE_ARTICLE"/>">
@@ -37,8 +40,8 @@
 		</div>
 		</form>
 		<div class="form-group pc"><div class="col-sm-10">
-		<c:if test="${ !empty sessionScope.userid}">
-		로그인 사용자는 아무 비밀번호나 입력해도 글이 삭제됩니다.
+		<c:if test="${!empty sessionScope.userid}">
+		로그인 사용자는 본인의 글이면 아무 비밀번호나 입력해도 글이 삭제됩니다.
 		</c:if>
 		</div></div>
 	</div>
