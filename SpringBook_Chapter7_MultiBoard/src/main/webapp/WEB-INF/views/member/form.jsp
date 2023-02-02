@@ -57,7 +57,7 @@
 	<div class="form-group">
       <label class="control-label col-sm-2" for="email"><fmt:message key="MEMBER_EMAIL"/></label>
       <div class="col-sm-8">
-        <input type="email" name="email" id="email" value="${member.address}" class="form-control" required>
+        <input type="email" name="email" id="email" value="${member.email}" class="form-control" required>
       </div>
     </div>
     <div class="form-group">

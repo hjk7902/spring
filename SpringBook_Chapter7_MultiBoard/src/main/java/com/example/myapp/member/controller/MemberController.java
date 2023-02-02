@@ -30,6 +30,11 @@ public class MemberController {
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
 	public String insertMember(Member member, HttpSession session, Model model) {
 		try {
+			if(!member.getPassword().equals(member.getPassword2())) {
+				model.addAttribute("member", member);
+				model.addAttribute("message", "MEMBER_PW_RE");
+				return "member/form";
+			}
 			memberService.insertMember(member);
 		}catch(DuplicateKeyException e) {
 			member.setUserid(null);

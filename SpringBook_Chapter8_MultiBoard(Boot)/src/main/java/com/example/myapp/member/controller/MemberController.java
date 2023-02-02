@@ -47,8 +47,12 @@ public class MemberController {
 			model.addAttribute("member", member);
 			return "member/form";
 		}
-		
 		try {
+			if(!member.getPassword().equals(member.getPassword2())) {
+				model.addAttribute("member", member);
+				model.addAttribute("message", "MEMBER_PW_RE");
+				return "member/form";
+			}
 			memberService.insertMember(member);
 		}catch(DuplicateKeyException e) {
 			member.setUserid(null);
@@ -115,12 +119,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/update", method=RequestMethod.POST)
-	public String updateMember(@Validated Member member, BindingResult result,HttpSession session, Model model) {
+	public String updateMember(@Validated Member member, BindingResult result, HttpSession session, Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("member", member);
 			return "member/update";
 		}
-		
 		try{
 			memberService.updateMember(member);
 			model.addAttribute("message", "UPDATED_MEMBER_INFO");
