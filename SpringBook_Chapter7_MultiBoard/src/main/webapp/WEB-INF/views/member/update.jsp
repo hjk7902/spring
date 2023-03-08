@@ -71,7 +71,6 @@
 </div>
 <jsp:include page="/WEB-INF/views/include/footer.jsp"/>
 </body>
-</html>
 <script type="text/javascript">
 var pw1 = document.querySelector("#password");
 var pw2 = document.querySelector("#password2");
@@ -84,3 +83,4 @@ pw2.onkeyup = function(event) {
 	}
 }
 </script>
+</html>

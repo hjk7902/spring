@@ -22,7 +22,7 @@
 	<div class="form-group">
       <label class="control-label col-sm-2" for="userid">[[#{MEMBER_ID}]]</label>
       <div class="col-sm-4">
-        <input type="text" name="userid" id="userid" th:value="${member['userid']}" ${empty member.userid ? "" : "readonly"} class="form-control" placeholder="#{MEMBER_ID}" required>
+        <input type="text" name="userid" id="userid" th:value="${member.userid}" th:readonly="${member.userid!=null}" class="form-control" th:placeholder="#{MEMBER_ID}" required>
       </div>
     </div>
 	<div class="form-group">
@@ -67,7 +67,6 @@
 </div>
 <footer th:replace="~{/include/footer :: footer}"></footer> 
 </body>
-</html>
 <script type="text/javascript">
 var pw1 = document.querySelector("#password");
 var pw2 = document.querySelector("#password2");
@@ -80,3 +79,4 @@ pw2.onkeyup = function(event) {
 	}
 }
 </script>
+</html>

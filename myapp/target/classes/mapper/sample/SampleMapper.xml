@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.example.myapp.dao.ISampleRepository">
+<mapper namespace="com.example.myapp.test.dao.ISampleRepository">
 
-	<select id="selectSampleData" resultType="com.example.model.SampleVO">
+	<select id="selectSampleData" resultType="com.example.myapp.test.model.SampleVO">
 	<![CDATA[
 		SELECT 
 			id 		AS "id", 
