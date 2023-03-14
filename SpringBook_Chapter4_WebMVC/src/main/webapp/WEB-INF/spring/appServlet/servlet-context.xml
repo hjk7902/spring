@@ -31,6 +31,7 @@
 		</interceptor>
 	</interceptors>
 	
+	<view-controller path="/" view-name="home"/>
 	<view-controller path="/hr/form/input" view-name="hr/form"/>
 	
 	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
