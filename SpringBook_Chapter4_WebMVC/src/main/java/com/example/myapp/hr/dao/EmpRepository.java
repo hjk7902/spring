@@ -71,7 +71,8 @@ public class EmpRepository implements IEmpRepository {
 								 emp.getLastName(),
 								 emp.getEmail(),
 								 emp.getPhoneNumber(),
-								 emp.getHireDate(),
+//								 emp.getHireDate().toString() + " 00:00:00.000", //SQLite 에서 사용
+								 emp.getHireDate(), //Oracle에서 사용
 								 emp.getJobId(),
 								 emp.getSalary(),
 								 emp.getCommissionPct(),
@@ -85,12 +86,14 @@ public class EmpRepository implements IEmpRepository {
 		String sql = "INSERT INTO employees (employee_id, first_name, "
 					+ "last_name, email, phone_number, hire_date, job_id, "
 					+ "salary, commission_pct, manager_id, department_id) "
-					+ "VALUES (?,?,?,?,?,SYSDATE,?,?,?,?,?)";
+					+ "VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 		jdbcTemplate.update(sql, emp.getEmployeeId(),
 								 emp.getFirstName(),
 								 emp.getLastName(),
 								 emp.getEmail(),
 								 emp.getPhoneNumber(),
+//								 emp.getHireDate().toString() + " 00:00:00.000", //SQLite 에서 사용
+								 emp.getHireDate(), //Oracle에서 사용
 								 emp.getJobId(),
 								 emp.getSalary(),
 								 emp.getCommissionPct(),

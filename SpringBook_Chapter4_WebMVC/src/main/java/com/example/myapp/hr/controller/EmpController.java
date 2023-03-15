@@ -60,6 +60,7 @@ public class EmpController {
 	@RequestMapping(value="/hr/insert", method=RequestMethod.POST)
 	public String insertEmp(EmpVO emp, RedirectAttributes redirectAttributes) {
 		try {
+			System.out.println(emp.toString());
 			empService.insertEmp(emp);
 			redirectAttributes.addFlashAttribute("message", 
 					emp.getEmployeeId()+"번 사원정보가 입력되었습니다.");
