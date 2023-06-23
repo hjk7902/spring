@@ -49,7 +49,7 @@ public class LogAspect {
 		System.out.println("[Log: AfterThrowing] 예외 발생 : " + exception.getMessage());
 	}
 
-	@Around("execution(* com.example..*.*(..))")
+	@Around("execution(* com.example..HelloService.*(..))")
 	public Object trace(ProceedingJoinPoint joinPoint) throws Throwable{
 		Signature s= joinPoint.getSignature();
 		String methodName = s.getName();
