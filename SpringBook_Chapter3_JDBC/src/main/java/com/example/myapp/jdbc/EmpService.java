@@ -44,7 +44,7 @@ public class EmpService implements IEmpService {
 	}
 
 	@Override
-	@Transactional
+	@Transactional("txManager")
 	public int deleteEmp(int empid, String email) {
 		empRepository.deleteJobHistory(empid);
 		return empRepository.deleteEmp(empid, email);

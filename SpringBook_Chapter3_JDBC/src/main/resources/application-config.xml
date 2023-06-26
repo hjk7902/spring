@@ -6,6 +6,7 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+	<context:component-scan base-package="com.example.myapp.jdbc"/>
 
 	<!-- 데이터 소스 설정 -->
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
@@ -19,11 +20,16 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
-	<context:component-scan base-package="com.example.myapp.jdbc"/>
-	
-	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="txManager" 
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	<tx:annotation-driven/>
+	<tx:annotation-driven transaction-manager="txManager"/>
 </beans>
+
+
+
+
+
+
