@@ -29,9 +29,9 @@
     <script src="<c:url value='/js/jquery-ui.min.js'/>"></script>
 
 	<!-- Essentials -->
-	<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>" async="true"></script>
-	<script src="<c:url value='/js/jquery.hoverup.js'/>" async="true"></script>
-	<script src="<c:url value='/js/jquery.hoverdir.js'/>" async="true"></script>
-	<script src="<c:url value='/js/jquery.stellar.js'/>" async="true"></script>
+	<script src="<c:url value='/assets/bootstrap/js/bootstrap.min.js'/>" async="async"></script>
+	<script src="<c:url value='/js/jquery.hoverup.js'/>" async="async"></script>
+	<script src="<c:url value='/js/jquery.hoverdir.js'/>" async="async"></script>
+	<script src="<c:url value='/js/jquery.stellar.js'/>" async="async"></script>
 
 </head>
