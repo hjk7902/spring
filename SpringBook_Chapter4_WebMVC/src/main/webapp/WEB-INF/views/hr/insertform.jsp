@@ -76,7 +76,7 @@
 	<th>&nbsp;</th>
 	<td>
 		<input type="submit" value="저장"> 
-		<input type="reset" value="취소">
+		<input type="reset" value="취소" onclick="history.back()">
 	</td>
 </tr>
 </table>
