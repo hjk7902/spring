@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>CoderBy</title>
+<title>Example</title>
 </head>
 <body>
 <p><a href='<c:url value="/upload/new"/>'>업로드</a></p>

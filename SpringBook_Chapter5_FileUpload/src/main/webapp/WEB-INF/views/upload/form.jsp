@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>CoderBy</title>
+<title>Example</title>
 </head>
 <body>
 <c:url var="actionURL" value='/upload/new' />
