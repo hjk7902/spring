@@ -12,8 +12,8 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.abc.myprj">
-		<level value="info" />
+	<logger name="com.example.myapp">
+		<level value="warn" />
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -35,7 +35,7 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+		<priority value="info" />
 		<appender-ref ref="console" />
 	</root>
 	

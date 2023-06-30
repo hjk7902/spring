@@ -17,13 +17,14 @@ import com.example.myapp.member.service.IMemberService;
 
 @Controller
 public class MemberController {
-	static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	IMemberService memberService;
 
 	@RequestMapping(value="/member/insert", method=RequestMethod.GET)
 	public String insertMember() {
+		logger.info("/member/insert, GET");
 		return "member/form";
 	}
 	

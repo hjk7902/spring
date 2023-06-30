@@ -23,13 +23,14 @@ import com.example.myapp.upload.service.IUploadFileService;
 
 @Controller
 public class UploadFileController {
-	static final Logger logger = LoggerFactory.getLogger(UploadFileController.class);
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	IUploadFileService uploadService;
 
 	@RequestMapping(value="/upload/new", method=RequestMethod.GET)
 	public String uploadFile(Model model) {
+		logger.info("message");
 		return "upload/form";
 	}
 	
