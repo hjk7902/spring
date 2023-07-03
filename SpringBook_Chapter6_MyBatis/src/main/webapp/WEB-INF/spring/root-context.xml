@@ -23,7 +23,7 @@
 		<property name="mapperLocations" value="classpath:mapper/**/*.xml"/>
 	</bean>
 	
-	<bean class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
 
