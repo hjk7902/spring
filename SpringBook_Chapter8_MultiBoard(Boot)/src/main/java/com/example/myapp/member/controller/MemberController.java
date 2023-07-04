@@ -74,7 +74,7 @@ public class MemberController {
 		Member member = memberService.selectMember(userid);
 		if(member != null) {
 			String dbPassword = member.getPassword();
-				if(dbPassword == null) {
+			if(dbPassword == null) {
 				//아이디가 없음
 				model.addAttribute("message", "NOT_VALID_USER");
 			}else {
@@ -160,7 +160,8 @@ public class MemberController {
 			String dbpw = memberService.getPassword(member.getUserid());
 			if(password != null && password.equals(dbpw)) {
 				member.setPassword(password);
-				memberService.deleteMember(member) ;
+				memberService.deleteMember(member);
+				model.addAttribute("message", "DELETED_USER_INFO");
 				session.invalidate();//삭제되었으면 로그아웃 처리
 				return "member/login";
 			}else {

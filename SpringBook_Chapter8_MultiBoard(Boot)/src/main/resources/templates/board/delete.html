@@ -7,18 +7,18 @@
 	<div class="pg-opt">
         <div class="row">
             <div class="col-md-6 pc">
-                <h2>[[#{DELETE_ARTICLE}]]</h2>
+                <h2 th:text="#{DELETE_ARTICLE}">DELETE ARTICLE</h2>
             </div>
             <div class="col-md-6">
                 <ol class="breadcrumb">
-                    <li>[[#{BOARD}]]</li>
-                    <li class="active">[[#{DELETE_ARTICLE}]]</li>
+                    <li th:text="#{BOARD}">BOARD</li>
+                    <li class="active" th:text="#{DELETE_ARTICLE}">DELETE ARTICLE</li>
                 </ol>
             </div>
         </div>
     </div>
 	<div class="content">
-		<h3>[[#{DELETE_MSG}]]</h3>
+		<h3 th:text="#{DELETE_MSG}">DELETE MESSAGE</h3>
 		<form th:action='@{/board/delete}' class="form-inline" method="post">
 		<input type="hidden" name="boardId" th:value="${boardId}">
 		<input type="hidden" name="replyNumber" th:value="${replyNumber}">
