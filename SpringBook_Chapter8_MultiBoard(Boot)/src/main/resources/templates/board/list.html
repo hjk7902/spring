@@ -7,19 +7,19 @@
 	<div class="pg-opt">
 	    <div class="row">
 	        <div class="col-md-6 pc">
-	            <h2>[[#{BOARD_LIST}]] 
-	            <small style="color:red;" th:if="${email==null}">[[#{LOGIN}]]</small>
+	            <h2 th:text="#{BOARD_LIST}">BOARD LIST 
+	            <small style="color:red;" th:if="${email==null}" th:text="#{LOGIN}"></small>
 	            </h2>
 	        </div>
 	        <div class="col-md-6">
 	            <ol class="breadcrumb">
-	                <li>[[#{BOARD}]]</li>
-	                <li class="active">[[#{BOARD_LIST}]]</li>
+	                <li th:text="#{BOARD}">BOARD</li>
+	                <li class="active" th:text="#{BOARD_LIST}">BOARD LIST</li>
 	            </ol>
 	        </div>
 	    </div>
     </div>
-	[[${message}]]
+	<span th:text="${message}">message</span>
 	<div class="content">
 		<form th:action="@{/board/search/1}" method="get">
 			<div class="pull-right" style="margin-bottom: 5px;">
@@ -32,26 +32,26 @@
 	    <table class="table table-hover table-bordered">
 		<thead>
 		<tr>
-			<td>[[#{BOARD_ID}]]</td>
-			<td class="pc">[[#{WRITER}]]</td>
-			<td>[[#{SUBJECT}]]</td>
-			<td class="pc">[[#{WRITE_DATE}]]</td>
-			<td class="pc">[[#{READ_COUNT}]]</td>
+			<td th:text="#{BOARD_ID}">BOARD ID</td>
+			<td class="pc" th:text="#{WRITER}">WRITER</td>
+			<td th:text="#{SUBJECT}">SUBJECT</td>
+			<td class="pc" th:text="#{WRITE_DATE}">WRITE DATE</td>
+			<td class="pc" th:text="#{READ_COUNT}">READ COUNT</td>
 		</tr>
 		</thead>
 		<tr th:each="board : ${boardList}">
-			<td>[[${board.boardId}]]</td>
-			<td class="pc">[[${board.writer}]]</td>
+			<td th:text="${board.boardId}">boardId</td>
+			<td class="pc" th:text="${board.writer}">writer</td>
 			<td>
 			<span th:if="${board.replyNumber>0}">
 				<span th:each="num : ${#numbers.sequence(1, board.replyStep)}">&nbsp;</span>
 				<span>└</span>
 			</span>
-			<a th:href="@{/board/__${board.boardId}__/__${session.page}__}">[[${board.title}]]</a>
+			<a th:href="@{/board/__${board.boardId}__/__${session.page}__}" th:text="${board.title}">title</a>
 			<!-- <a th:href="@{/board/{id}/{page}(id=${board.boardId}, page=${session.page})}">[[${board.title}]]</a> -->
 			</td>
-			<td class="pc" th:text="${#dates.format(board.writeDate, 'YYYY-MM-dd')}"/></td>
-			<td class="pc" th:text="${board.readCount}"></td>
+			<td class="pc" th:text="${#dates.format(board.writeDate, 'YYYY-MM-dd')}"/>writeDate</td>
+			<td class="pc" th:text="${board.readCount}">readCount</td>
 		</tr>
 		</table>
 		<table class="table">
@@ -60,7 +60,7 @@
 				<div th:replace="~{/include/paging :: paging}"></div> 
 			</td>
 			<td align="right">
-				<a th:href="@{/board/write/__${categoryId}__}"><button type="button" class="btn btn-info">[[#{WRITE_NEW_ARTICLE}]]</button> </a>
+				<a th:href="@{/board/write/__${categoryId}__}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
 			</td>
 		</tr>
 		</table>
