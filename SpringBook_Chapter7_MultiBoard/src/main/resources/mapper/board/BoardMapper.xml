@@ -206,7 +206,7 @@
 	<![CDATA[
 		DELETE FROM board_upload_file 
 		WHERE EXISTS  ( SELECT board_id FROM board 
-						 WHERE board.master_id=#{boardId} 
+						 WHERE board.board_id=#{boardId} 
 						 	AND board.board_id=board_upload_file.board_id )
 	]]>
 	</delete>
@@ -215,7 +215,7 @@
 	<![CDATA[
 		DELETE FROM board_upload_file 
 		WHERE EXISTS  ( SELECT board_id FROM board  
-						 WHERE board.board_id=#{boardId} 
+						 WHERE board.master_id=#{boardId} 
 						 	AND board.board_id=board_upload_file.board_id )
 	]]>
 	</delete>

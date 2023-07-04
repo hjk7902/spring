@@ -106,10 +106,10 @@ public class BoardService implements IBoardService {
 	@Transactional
 	public void deleteArticle(int boardId, int replyNumber) {
 		if(replyNumber>0) {
-			boardRepository.deleteReplyFileData(boardId);
+			boardRepository.deleteFileData(boardId);
 			boardRepository.deleteArticleByBoardId(boardId);
 		}else if(replyNumber==0){
-			boardRepository.deleteFileData(boardId);
+			boardRepository.deleteReplyFileData(boardId);
 			boardRepository.deleteArticleByMasterId(boardId);
 		}else {
 			throw new RuntimeException("WRONG_REPLYNUMBER");
