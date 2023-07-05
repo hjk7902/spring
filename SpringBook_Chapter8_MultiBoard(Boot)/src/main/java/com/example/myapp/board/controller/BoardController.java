@@ -35,7 +35,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class BoardController {
-	static final Logger logger = LoggerFactory.getLogger(BoardController.class);
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	IBoardService boardService;

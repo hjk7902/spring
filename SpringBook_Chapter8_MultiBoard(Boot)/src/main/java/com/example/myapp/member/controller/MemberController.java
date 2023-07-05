@@ -22,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MemberController {
-	static final Logger logger = LoggerFactory.getLogger(MemberController.class);
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
 	IMemberService memberService;
@@ -73,27 +73,21 @@ public class MemberController {
 	public String login(String userid, String password, HttpSession session, Model model) {
 		Member member = memberService.selectMember(userid);
 		if(member != null) {
+			logger.info(member.toString());
 			String dbPassword = member.getPassword();
-			if(dbPassword == null) {
-				//아이디가 없음
-				model.addAttribute("message", "NOT_VALID_USER");
-			}else {
-				//아이디 있음
-				if(dbPassword.equals(password)) {
-					//비밀번호 일치
-					session.setAttribute("userid", userid);
-					session.setAttribute("name", member.getName());
-					session.setAttribute("email", member.getEmail());
-					return "member/login";
-				}else {
-					//비밀번호 불일치
-					model.addAttribute("message", "WRONG_PASSWORD");
-				}
+			if(dbPassword.equals(password)) { //비밀번호 일치
+				session.setMaxInactiveInterval(600); //10분
+				session.setAttribute("userid", userid);
+				session.setAttribute("name", member.getName());
+				session.setAttribute("email", member.getEmail());
+			}else { //비밀번호가 다름
+				session.invalidate();
+				model.addAttribute("message", "WRONG_PASSWORD");
 			}
-		}else {
+		}else { //아이디가 없음
+			session.invalidate();
 			model.addAttribute("message", "USER_NOT_FOUND");
 		}
-		session.invalidate();	
 		return "member/login";
 	}
 	
