@@ -15,11 +15,9 @@ import com.example.myapp.board.service.BoardService;
 class BoardApplicationTests {
 
 	@Mock
+//	@Autowired
 	IBoardRepository boardRepository;
 	
-//	@Autowired
-//	IBoardRepository boardRepository;
-		
 	@InjectMocks
 	BoardService boardService;
 	
