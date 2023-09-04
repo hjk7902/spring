@@ -17,7 +17,6 @@ import com.example.myapp.member.MemberValidator;
 import com.example.myapp.member.model.Member;
 import com.example.myapp.member.service.IMemberService;
 
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -88,11 +87,12 @@ public class MemberController {
 			session.invalidate();
 			model.addAttribute("message", "USER_NOT_FOUND");
 		}
+		logger.info(member.toString());
 		return "member/login";
 	}
 	
 	@RequestMapping(value="/member/logout", method=RequestMethod.GET)
-	public String logout(HttpSession session, HttpServletRequest request) {
+	public String logout(HttpSession session) {
 		session.invalidate(); //로그아웃
 		return "home";
 	}
