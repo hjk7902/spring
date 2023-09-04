@@ -5,32 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="index, follow">
     
-    <title>[[#{title}]]</title>
-    <!-- Favicon -->
+    <title th:text="#{title}">Title</title>
+    
     <link th:href="@{/favicon.png}" rel="icon" type="image/png">
 	
 	<link rel="stylesheet" th:href="@{/css/default.css}">
     
-    <!-- Essential styles -->
-    <link rel="stylesheet" th:href="@{/assets/bootstrap/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/font-awesome/css/font-awesome.min.css}"> 
-    <link rel="stylesheet" th:href="@{/assets/fancybox/jquery.fancybox.css?v=2.1.5}" media="screen"> 
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/global-style.css}" media="screen">  
 
-    <!-- Boomerang styles -->
-    <link id="wpStylesheet" rel="stylesheet" type="text/css" th:href="@{/css/global-style.css}" media="screen">  
-
-    <!-- Boomerang styles -->
-    <link rel="stylesheet" type="text/css" th:href="@{/css/side-menu.css}" media="screen">  
-
-    <!-- Required JS async 또는 defer 속성을 넣으면 안됩니다.-->
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script th:src="@{/js/jquery-ui.min.js}"></script>
-
-	<!-- Essentials -->
-	<script th:src="@{/assets/bootstrap/js/bootstrap.min.js}" async="async"></script>
-	<script th:src="@{/js/jquery.hoverup.js}" async="async"></script>
-	<script th:src="@{/js/jquery.hoverdir.js}" async="async"></script>
-	<script th:src="@{/js/jquery.stellar.js}" async="async"></script>
+    <script th:src="@{/js/jquery-3.6.3.js}"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
 	
 	<script type="text/javascript">
 	$(document).ready(function() {
@@ -43,4 +28,3 @@
 	});
 	</script>
 </head>
-</html>
