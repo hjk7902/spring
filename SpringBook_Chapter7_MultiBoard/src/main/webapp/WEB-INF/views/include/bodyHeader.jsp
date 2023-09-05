@@ -19,7 +19,7 @@
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <i class="fa fa-bars icon-custom"></i>
             </button>
-            <a class="navbar-brand" href="<c:url value="/"/>" title=""><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+            <a class="navbar-brand" href="<c:url value="/"/>" title="">
             	<fmt:message key="TITLE"/>
             </a><div style="padding-left:15px; width:200px">http://www.javaspecialist.co.kr</div>
         </div>

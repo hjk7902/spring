@@ -47,6 +47,13 @@
 			<version>1.9.1</version>
 		</dependency>
 		
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.28</version>
+		</dependency>
+		
 		<!-- Spring JDBC -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -94,6 +101,19 @@
   		    <artifactId>jsoup</artifactId>
   		    <version>1.15.3</version>
   		</dependency>
+		
+		<!-- Jasypt -->
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt</artifactId>
+			<version>1.9.3</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.jasypt</groupId>
+			<artifactId>jasypt-spring4</artifactId>
+			<version>1.9.3</version>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>

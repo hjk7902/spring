@@ -56,11 +56,11 @@ td.board_content {
 
 input[required] {
     border-color: #00F;
-    -webkit-box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+    box-shadow: 0 0 3px rgba(0, 0, 255, .5);
 }
 input:invalid {
     border-color: #F00;
-    -webkit-box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+    box-shadow: 0 0 5px rgba(255, 0, 0, .8);
 }
 
 .pg-opt > .row {
@@ -71,13 +71,7 @@ input:invalid {
 	text-align: right !important;
 }
 
-@import url(http://fonts.googleapis.com/earlyaccess/jejugothic.css);
 audio, video {
-    -moz-transition: all 1s ease;
-    -ms-transition: all 1s ease;
-    
-    -o-transition: all 1s ease;
-    -webkit-transition: all 1s ease;
     transition: all 1s ease;
     vertical-align: top;
 }
