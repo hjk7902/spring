@@ -54,6 +54,13 @@
 			<version>21.1.0.0</version>
 		 </dependency>
 
+		<!-- Lombok -->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.28</version>
+		</dependency>
+		
 		<!-- AspectJWeaver -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
