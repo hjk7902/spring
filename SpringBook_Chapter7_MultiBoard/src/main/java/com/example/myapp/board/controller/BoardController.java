@@ -3,8 +3,9 @@ package com.example.myapp.board.controller;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.UUID;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpSession; // tomcat 10은 jakarta.servlet
 
 import org.jsoup.Jsoup;
 import org.jsoup.safety.Safelist;
@@ -78,7 +79,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/write/{categoryId}", method=RequestMethod.GET)
-	public String writeArticle(@PathVariable int categoryId, Model model) {
+	public String writeArticle(@PathVariable int categoryId, HttpSession session, Model model) {
+		// CSRF 토큰을 생성하여 세션에 저장
+		String csrfToken = UUID.randomUUID().toString();
+        session.setAttribute("csrfToken", csrfToken);
 		List<BoardCategory> categoryList = categoryService.selectAllCategory();
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("categoryId", categoryId);
@@ -86,8 +90,13 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
-	public String writeArticle(Board board, BindingResult results, RedirectAttributes redirectAttrs) {
-		logger.info("/board/write : " + board.toString());
+	public String writeArticle(Board board, BindingResult results, String csrfToken, HttpSession session, RedirectAttributes redirectAttrs) {
+		logger.info("/board/write : " + board.toString() + csrfToken);
+		if(csrfToken==null || "".equals(csrfToken)) {
+			throw new RuntimeException("CSRF 토큰이 없습니다.");
+		}else if(!csrfToken.equals(session.getAttribute("csrfToken"))) {
+			throw new RuntimeException("잘 못된 접근이 감지되었습니다.");
+		}
 		try{
 			board.setContent(board.getContent().replace("\r\n", "<br>"));
 			board.setTitle(Jsoup.clean(board.getTitle(), Safelist.basic()));
@@ -246,7 +255,6 @@ public class BoardController {
 			model.addAttribute("boardList", boardList);
 			int bbsCount = boardService.selectTotalArticleCountByKeyword(keyword);
 			int totalPage = 0;
-
 			if(bbsCount > 0) {
 				totalPage= (int)Math.ceil(bbsCount/10.0);
 			}
@@ -259,5 +267,4 @@ public class BoardController {
 		}
 		return "board/search";
 	}
-
 }

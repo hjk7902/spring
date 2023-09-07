@@ -23,6 +23,7 @@
     </div>
 	<div class="content">
 	<form action="<c:url value='/member/insert.do'/>" method="post" id="joinForm" class="form-horizontal">
+	<input type="hidden" name="csrfToken" id="csrfToken" value="${sessionScope.csrfToken}">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="userid"><fmt:message key="MEMBER_ID"/></label>
       <div class="col-sm-4">

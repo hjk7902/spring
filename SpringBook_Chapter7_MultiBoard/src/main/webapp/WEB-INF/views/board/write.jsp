@@ -23,6 +23,7 @@
     </div>
 	<div class="content">
 	<form action="<c:url value='/board/write'/>" method="post" enctype="multipart/form-data" class="form-horizontal">
+	<input type="hidden" name="csrfToken" id="csrfToken" value="${sessionScope.csrfToken}">
 	<c:if test="${!empty categoryList}">
 	<div class="form-group">
       <label class="control-label col-sm-2" for="name"><fmt:message key="CATEGORY"/></label>

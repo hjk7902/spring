@@ -1,5 +1,7 @@
 package com.example.myapp.member.controller;
 
+import java.util.UUID;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -23,13 +25,20 @@ public class MemberController {
 	IMemberService memberService;
 
 	@RequestMapping(value="/member/insert", method=RequestMethod.GET)
-	public String insertMember() {
-		logger.info("/member/insert, GET");
+	public String insertMember(HttpSession session) {
+		String csrfToken = UUID.randomUUID().toString();
+        session.setAttribute("csrfToken", csrfToken);
+		logger.info("/member/insert, GET", csrfToken);
 		return "member/form";
 	}
 	
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
-	public String insertMember(Member member, HttpSession session, Model model) {
+	public String insertMember(Member member, String csrfToken, HttpSession session, Model model) {
+		if(csrfToken==null || "".equals(csrfToken)) {
+			throw new RuntimeException("CSRF 토큰이 없습니다.");
+		}else if(!csrfToken.equals(session.getAttribute("csrfToken"))) {
+			throw new RuntimeException("잘 못된 접근이 감지되었습니다.");
+		}
 		try {
 			if(!member.getPassword().equals(member.getPassword2())) {
 				model.addAttribute("member", member);
@@ -56,27 +65,20 @@ public class MemberController {
 	public String login(String userid, String password, HttpSession session, Model model) {
 		Member member = memberService.selectMember(userid);
 		if(member != null) {
+			logger.info(member.toString());
 			String dbPassword = member.getPassword();
-				if(dbPassword == null) {
-				//아이디가 없음
-				model.addAttribute("message", "NOT_VALID_USER");
-			}else {
-				//아이디 있음
-				if(dbPassword.equals(password)) {
-					//비밀번호 일치
-					session.setAttribute("userid", userid);
-					session.setAttribute("name", member.getName());
-					session.setAttribute("email", member.getEmail());
-					return "member/login";
-				}else {
-					//비밀번호 불일치
-					model.addAttribute("message", "WRONG_PASSWORD");
-				}
+			if(dbPassword.equals(password)) { // 비밀번호 일치
+				session.setMaxInactiveInterval(600); //10분
+				session.setAttribute("userid", userid);
+				session.setAttribute("name", member.getName());
+				session.setAttribute("email", member.getEmail());
+			}else {	//비밀번호가 다름
+				model.addAttribute("message", "WRONG_PASSWORD");
 			}
-		}else {
+		}else { // 아이디가 없음
+			session.invalidate();
 			model.addAttribute("message", "USER_NOT_FOUND");
 		}
-		session.invalidate();	
 		return "member/login";
 	}
 	
