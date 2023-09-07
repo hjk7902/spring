@@ -51,7 +51,11 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
-	public String insertMember(@Validated Member member, BindingResult result, HttpSession session, Model model) {
+	public String insertMember(@Validated Member member, BindingResult result, String csrfToken, HttpSession session, Model model) {
+		String sessionToken = (String) session.getAttribute("csrfToken");
+		if(csrfToken==null || !csrfToken.equals(sessionToken)) {
+			throw new RuntimeException("CSRF Token Error.");
+		}
 		if(result.hasErrors()) {
 			model.addAttribute("member", member);
 			return "member/form";
