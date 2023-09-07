@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+    <div class="pg-opt">
+        <div class="row">
+            <div class="col-md-6 pc">
+                <h2 th:text="#{CONTENT}">CONTENT</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li th:text="#{BOARD}">BOARD</li>
+                    <li class="active" th:text="#{CONTENT}">CONTENT</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<div class="content">
+	<table class="table table-bordered">
+	<tr class="pc">
+		<td colspan=2 align="right">
+		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
+		<a th:href="@{/board/write/{categoryId}(categoryId=${categoryId})}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
+		<a th:href="@{/board/reply/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{REPLY}">REPLY</button></a>
+		<a th:href="@{/board/update/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{UPDATE}">UPDATE</button></a>
+		<a th:href="@{/board/delete/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{DELETE}">DELETE</button></a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%" th:text="#{BOARD_ID}">BOARD ID</td>
+		<td th:text="${board.boardId}">ID</td>
+	</tr>
+	<tr>
+		<td width="20%" th:text="#{WRITER}">WRITER</td>
+		<td th:text="${board.writer}">작성자</td>
+	</tr>
+	<tr>
+		<td width="20%" th:text="#{WRITE_DATE}">WRITE DATE</td>
+		<td th:text="${#dates.format(board.writeDate, 'YYYY-MM-dd')}">YYYY-MM-DD</td>
+	</tr>
+	<tr>
+		<td th:text="#{SUBJECT}">SUBJECT</td>
+		<td th:text="${board.title}">제목</td>
+	</tr>
+	<tr>
+		<td th:text="#{CONTENT}">CONTENT</td>
+		<td class="board_content" th:utext="${board.content}">내용</td>
+	</tr>
+    <!-- th:block th:if="${userid!=null}"-->
+	<tr th:if="${board.fileName!=null}">
+		<td th:text="#{FILE}">FILE</td>
+		<td>
+		<img th:src="@{/file/{id}(id=${board.fileId})}"
+			 th:if="${fileType=='.JPG' ||  fileType=='.JPEG' || fileType=='.PNG' || fileType=='.GIF'}" class="img-thumbnail"><br>
+		<a th:href="@{/file/{fileId}(fileId=${board.fileId})}" th:text="${board.fileName}">(<span th:text="${#numbers.formatDecimal(board.fileSize,3,'COMMA',2,'POINT')}">0</span>byte)</a>
+		</td>
+	</tr>
+    <!-- /th:block-->
+	<tr>
+		<td colspan=2 align="right">
+		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
+		<a th:href="@{/board/write/{categoryId}(categoryId=${categoryId})}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
+		<a th:href="@{/board/reply/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{REPLY}">REPLY</button></a>
+		<a th:href="@{/board/update/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{UPDATE}">UPDATE</button></a>
+		<a th:href="@{/board/delete/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{DELETE}">DELETE</button></a>
+		</td>
+	</tr>
+	</table>
+</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+</html>

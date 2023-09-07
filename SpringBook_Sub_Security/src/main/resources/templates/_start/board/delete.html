@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head></head> 
+<body>
+<div></div>
+<div class="container">
+	<div class="pg-opt">
+        <div class="row">
+            <div class="col-md-6 pc">
+                <h2>DELETE ARTICLE</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li>BOARD</li>
+                    <li class="active">DELETE ARTICLE</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<div class="content">
+		<h3>DELETE MESSAGE</h3>
+		<form action='/board/delete' class="form-inline" method="post">
+		<input type="hidden" name="boardId">
+		<input type="hidden" name="replyNumber">
+		<input type="hidden" name="categoryId">
+		<div class="form-group">
+		<div class="col-sm-8">
+		<input type="password" name="password" class="form-control" required>
+		<span style="color:red;"><br>[[#{${message}}]]</span>
+		</div>
+		<div class="col-sm-2">
+		<input type="submit" class="btn btn-danger">
+		</div>
+		</div>
+		</form>
+		<div class="form-group pc"><div class="col-sm-10">
+		로그인 사용자는 본인의 글이면 아무 비밀번호나 입력해도 글이 삭제됩니다.
+		</div></div>
+	</div>
+</div>
+<footer></footer> 
+</body>
+</html>

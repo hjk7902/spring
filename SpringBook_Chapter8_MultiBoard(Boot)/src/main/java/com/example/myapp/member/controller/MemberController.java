@@ -1,5 +1,7 @@
 package com.example.myapp.member.controller;
 
+import java.util.UUID;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,13 +37,21 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value="/member/insert", method=RequestMethod.GET)
-	public String insertMember(Model model) {
+	public String insertMember(HttpSession session, Model model) {
+		String csrfToken = UUID.randomUUID().toString();
+        session.setAttribute("csrfToken", csrfToken);
+		logger.info("/member/insert, GET", csrfToken);
 		model.addAttribute("member", new Member());
 		return "member/form";
 	}
-	
+
 	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
-	public String insertMember(@Validated Member member, BindingResult result, HttpSession session, Model model) {
+	public String insertMember(@Validated Member member, BindingResult result, String csrfToken, HttpSession session, Model model) {
+		if(csrfToken==null || "".equals(csrfToken)) {
+			throw new RuntimeException("CSRF 토큰이 없습니다.");
+		}else if(!csrfToken.equals(session.getAttribute("csrfToken"))) {
+			throw new RuntimeException("잘 못된 접근이 감지되었습니다.");
+		}
 		if(result.hasErrors()) {
 			model.addAttribute("member", member);
 			return "member/form";

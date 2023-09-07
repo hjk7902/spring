@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+	<div class="pg-opt">
+	    <div class="row">
+	        <div class="col-md-6 pc">
+	            <h2>[[#{SEARCH_RESULT}]]
+	            	<small th:if="${name==null}" th:text="#{LOGIN}">LOGIN</small>
+	            </h2>
+	        </div>
+	        <div class="col-md-6">
+	            <ol class="breadcrumb">
+	                <li th:text="#{BOARD}">BOARD</li>
+	                <li class="active" th:text="#{BOARD_LIST}">BOARD LIST</li>
+	            </ol>
+	        </div>
+	    </div>
+    </div>
+	<span th:text="${message}">message</span>
+	<div class="content">
+		<form th:action="@{/board/search/1}" method="get">
+			<div class="pull-right" style="margin-bottom: 5px;">
+			<div class="col-xs-9">
+		        <input type="text" name="keyword" class="form-control">
+		    </div>
+		        <input type="submit" class="btn btn-warning" th:value="#{SEARCH}">
+			</div>
+		</form>
+	    <table class="table table-hover table-bordered">
+		<thead>
+		<tr>
+			<td th:text="#{CATEGORY}">CATEGORY</td>
+			<td th:text="#{BOARD_ID}">BOARD ID</td>
+			<td class="pc" th:text="#{WRITER}">WRITER</td>
+			<td th:text="#{SUBJECT}">SUBJECT</td>
+			<td class="pc" th:text="#{WRITE_DATE}">WRITE DATE</td>
+			<td class="pc" th:text="#{READ_COUNT}">READ COUNT</td>
+		</tr>
+		</thead>
+		<tr th:each="board : ${boardList}">
+			<td th:text="${board.categoryId}"></td>
+			<td th:text="${board.boardId}"></td>
+			<td class="pc" th:text="${board.writer}"></td>
+			<td>
+			<a th:href="@{/board/__${board.boardId}__}" th:text="${board.title}"></a>
+			</td>
+			<td class="pc" th:text="${#dates.format(board.writeDate, 'YYYY-MM-dd')}"></td>
+			<td class="pc" th:text="${board.readCount}"></td>
+		</tr>
+		</table>
+		<table class="table">
+		<tr>
+			<td align="left">
+				<div th:replace="~{/include/search-paging :: searchPaging}"></div> 
+			</td>
+			<td></td>
+		</tr>
+		</table>
+	</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+</html>

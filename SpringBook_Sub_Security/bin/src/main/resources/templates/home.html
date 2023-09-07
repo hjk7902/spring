@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head>
+<body>
+	<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+	<div class="container">
+		<div class="pg-opt">
+			<div class="row">
+				<div class="col-md-6 pc">
+					<h2>[[#{home}]]</h2>
+				</div>
+				<div class="col-md-6">
+					<ol class="breadcrumb">
+						<li th:text="#{home.dashboard}">대시보드</li>
+						<li th:text="#{home}" class="active">홈</li>
+					</ol>
+					<span th:text="#{lang.change}"></span>: <select id="locales">
+						<option value="" th:text="#{lang.select}"></option>
+						<option value="en" th:text="#{lang.eng}"></option>
+						<option value="kr" th:text="#{lang.kor}"></option>
+					</select>
+				</div>
+			</div>
+		</div>
+
+		<div class="content">
+			<div class="alert alert-warning page-header">
+				<h3 th:text="#{home.message}">Welcome</h3>
+				<h3>request 데이터 : [[${message}]]</h3>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+					<a th:href="@{/board/cat/1}">카테고리 1번 게시판</a><br> <a
+						th:href="@{/board/cat/2}">카테고리 2번 게시판</a><br> <a
+						th:href="@{/board/cat/3}">카테고리 3번 게시판</a><br>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">Curabitur
+					sed bibendum neque, at congue ipsum. Lorem ipsum dolor samet,
+					consectetur adipiscing elit. Vivamus mattis a mauris.</div>
+				<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">Integer
+					commodo euismod accumsan. Mauris bibendum ante at aliquet, eu
+					dictum orci porttitor. Mauris cursus cursus.</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-danger" role="progressbar"
+					aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+					style="width: 100%;">
+					<span class="sr-only"></span>
+				</div>
+			</div>
+			<div class="progress">
+				<div class="progress-bar progress-bar-warning" role="progressbar"
+					aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"
+					style="width: 100%;">
+					<span class="sr-only"></span>
+				</div>
+			</div>
+			<div class="alert alert-info">
+				<ol>
+					<li>Donec vitae suscipit leo. Mauris arcu felis, eleifend id
+						porta.
+					<li><img th:src="@{/images/web.png}">
+				</ol>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="~{/include/footer :: footer}"></footer>
+</body>
+</html>
