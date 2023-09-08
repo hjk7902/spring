@@ -1,4 +1,5 @@
 ## 자바 스프링 프레임워크와 스프링 부트 - 원리부터 실전까지
+<img src="https://file.bookk.co.kr/thumbnails/products/64ba2c78be506a93956c59ec/thumbnail?q=100&w=280">
 
 처음 시작하는 스프링 프레임워크 [2021 개정판]에 스프링 부트가 추가되었습니다.
 이번에 출간된 책은 스프링 부트를 포함합니다.
