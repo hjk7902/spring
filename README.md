@@ -13,6 +13,5 @@
 
 소스코드의 일부는 자바전문가그룹( https://javaspecialist.co.kr )의 [자바 개발] > [Spring Framework] 게시판에서 내려받을 수 있습니다.
 
-책의 구매는 아래 사이트를 이용하세요.
-<a href="https://www.bookk.co.kr/book/view/161516">https://www.bookk.co.kr/book/view/161516</a>
+책의 구매는 <a href="https://www.bookk.co.kr/book/view/161516">부크크(https://www.bookk.co.kr/book/view/161516)</a>
 또는 교보문고, Yes24, 알라딘 등에서도 구매할 수 있습니다.
