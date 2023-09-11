@@ -48,23 +48,20 @@
 		<td th:text="#{CONTENT}">CONTENT</td>
 		<td class="board_content" th:utext="${board.content}">내용</td>
 	</tr>
-    <!-- th:block th:if="${userid!=null}"-->
 	<tr th:if="${board.fileName!=null}">
 		<td th:text="#{FILE}">FILE</td>
 		<td>
-		<div sec:authorize="hasRole('ROLE_ADMIN')">
-		<img th:src="@{/file/{id}(id=${board.fileId})}"
+			<th:block sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_USER')">
+			<img th:src="@{/file/{id}(id=${board.fileId})}"
 			 th:if="${fileType=='.JPG' ||  fileType=='.JPEG' || fileType=='.PNG' || fileType=='.GIF'}" class="img-thumbnail">
-		<a th:href="@{/file/{fileId}(fileId=${board.fileId})}" th:text="${board.fileName}">(<span th:text="${#numbers.formatDecimal(board.fileSize,3,'COMMA',2,'POINT')}">0</span>byte)</a>
-		</div>
-		<div sec:authorize="hasRole('ROLE_USER')">
-		<div>* 첨부파일을 내려받을 수 있는 권한이 없습니다.</div>
-		<span th:text="${board.fileName}">파일명 </span>
-		<span th:text="|(${#numbers.formatDecimal(board.fileSize/1024.0,1,'COMMA',2,'POINT')}KB)|">0KB</span>
-		</div>
+			<span th:text="${board.fileName}">파일명</span>
+			<span th:text="|(${#numbers.formatDecimal(board.fileSize/1024.0,1,'COMMA',2,'POINT')}KB)|">0KB</span>
+			</th:block>
+			<div sec:authorize="hasRole('ROLE_ADMIN')">
+				<a th:href="@{/file/{fileId}(fileId=${board.fileId})}">다운로드</a>
+			</div>
 		</td>
 	</tr>
-    <!-- /th:block-->
 	<tr>
 		<td colspan=2 align="right">
 		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
