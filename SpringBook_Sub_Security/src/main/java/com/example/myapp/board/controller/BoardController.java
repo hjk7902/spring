@@ -2,7 +2,9 @@ package com.example.myapp.board.controller;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import org.jsoup.Jsoup;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -308,5 +311,22 @@ public class BoardController {
 		model.addAttribute("stackTrace", ex.getStackTrace());
 		model.addAttribute("url", request.getRequestURI());
 		return "error/runtime";
+	}
+	
+	@RequestMapping("/json/{boardId}")
+	@ResponseBody
+	public Board getBoardDetailsJSON(@PathVariable int boardId) {
+		Board board = boardService.selectArticle(boardId);
+		return board;
+	}
+	
+	@RequestMapping("/json2/{boardId}")
+	@ResponseBody
+	public Map<String, Object> getBoardDetailsJSON2(@PathVariable int boardId) {
+		Map<String, Object> myMap = new HashMap<String, Object>();
+		Board board = boardService.selectArticle(boardId);
+		myMap.put("board", board);
+		myMap.put("obj", "other object");
+		return myMap;
 	}
 }
