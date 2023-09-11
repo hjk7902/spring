@@ -22,13 +22,13 @@
 	<div class="form-group">
       <label class="control-label col-sm-2" for="writer" th:text="#{WRITER}">WRITER</label>
       <div class="col-sm-2">
-        <input type="text" name="writer" id="writer" th:value="${session.name}" th:readonly="${session.name!=null ? 'readonly': false}" class="form-control" required>
+        <input type="text" name="writer" id="writer" th:value="${#authentication.name}" th:readonly="${#authorization.expression('isAuthenticated()') ? 'readonly': false}" class="form-control" required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email" th:text="#{EMAIL}">EMAIL</label>
       <div class="col-sm-4">
-        <input type="text" name="email" id="email" th:value="${session.email}" th:readonly="${session.email!=null ? 'readonly': false}" class="form-control" required>
+        <input type="text" name="email" id="email" th:value="${#authentication.principal.userEmail}" th:readonly="${#authorization.expression('isAuthenticated()') ? 'readonly': false}" class="form-control" required>
       </div>
     </div>
     <div class="form-group">
@@ -62,8 +62,8 @@
 			<input type="hidden" name="masterId" th:value="${board.masterId}">
 			<input type="hidden" name="replyNumber" th:value="${board.replyNumber}">
 			<input type="hidden" name="replyStep" th:value="${board.replyStep}">
-			<input type="submit" id="i_submit" class="btn btn-info" th:value="#{SAVE}"> 
-			<input type="reset" class="btn btn-info" th:value="#{CANCEL}" onclick="history.back()">
+			<input type="submit" id="i_submit" th:value="#{SAVE}" class="btn btn-info"> 
+			<input type="reset" th:value="#{CANCEL}" onclick="history.back()" class="btn btn-info">
 		</div>
 	</div>
 	</form>

@@ -21,11 +21,11 @@
 	<table class="table table-bordered">
 	<tr class="pc">
 		<td colspan=2 align="right">
-		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
-		<a th:href="@{/board/write/{categoryId}(categoryId=${categoryId})}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
-		<a th:href="@{/board/reply/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{REPLY}">REPLY</button></a>
-		<a th:href="@{/board/update/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{UPDATE}">UPDATE</button></a>
-		<a th:href="@{/board/delete/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{DELETE}">DELETE</button></a>
+		<a th:href="@{/board/cat/__${categoryId}__/__${page}__}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
+		<a th:href="@{/board/write/__${categoryId}__}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
+		<a th:href="@{/board/reply/__${board.boardId}__}"><button type="button" class="btn btn-info" th:text="#{REPLY}">REPLY</button></a>
+		<a th:href="@{/board/update/__${board.boardId}__}"><button type="button" class="btn btn-info" th:text="#{UPDATE}">UPDATE</button></a>
+		<a th:href="@{/board/delete/__${board.boardId}__}"><button type="button" class="btn btn-info" th:text="#{DELETE}">DELETE</button></a>
 		</td>
 	</tr>
 	<tr>
@@ -64,11 +64,11 @@
 	</tr>
 	<tr>
 		<td colspan=2 align="right">
-		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
-		<a th:href="@{/board/write/{categoryId}(categoryId=${categoryId})}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
-		<a th:href="@{/board/reply/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{REPLY}">REPLY</button></a>
-		<a th:href="@{/board/update/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{UPDATE}">UPDATE</button></a>
-		<a th:href="@{/board/delete/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info" th:text="#{DELETE}">DELETE</button></a>
+		<a th:href="@{/board/cat/__${categoryId}__/__${page}__}"><button type="button" class="btn btn-info" th:text="#{BOARD_LIST}">BOARD LIST</button></a>
+		<a th:href="@{/board/write/__${categoryId}__}"><button type="button" class="btn btn-info" th:text="#{WRITE_NEW_ARTICLE}">WRITE NEW ARTICLE</button></a>
+		<a th:href="@{/board/reply/__${board.boardId}__}"><button type="button" class="btn btn-info" th:text="#{REPLY}">REPLY</button></a>
+		<a th:href="@{/board/update/__${board.boardId}__}"><button type="button" class="btn btn-info" th:text="#{UPDATE}">UPDATE</button></a>
+		<a th:href="@{/board/delete/__${board.boardId}__}"><button type="button" class="btn btn-info" th:text="#{DELETE}">DELETE</button></a>
 		</td>
 	</tr>
 	</table>
