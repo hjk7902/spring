@@ -7,6 +7,8 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
@@ -25,7 +27,10 @@ public class SecurityConfig {
 			.logout()
 				.logoutUrl("/member/logout")
 				.logoutSuccessUrl("/member/login")
-				.invalidateHttpSession(true);
+				.invalidateHttpSession(true)
+			.and()
+			.exceptionHandling()
+				.accessDeniedPage("/error/403");
 		http.authorizeHttpRequests()
 			.requestMatchers("/file/**").hasRole("ADMIN")
 			.requestMatchers("/board/**").hasAnyRole("USER", "ADMIN")
@@ -42,17 +47,14 @@ public class SecurityConfig {
 	@ConditionalOnMissingBean(UserDetailsService.class)
 	public InMemoryUserDetailsManager userDetailsService() {
 		return new InMemoryUserDetailsManager(
-				User
-					.withUsername("foo")
-					.password("{noop}demo")
-					.roles("ADMIN").build(),
-				User
-					.withUsername("bar")
-					.password("{noop}demo")
-					.roles("USER").build(),
-				User
-					.withUsername("ted")
-					.password("{noop}demo")
-					.roles("USER","ADMIN").build());
+				User.withUsername("foo").password("{noop}demo").roles("ADMIN").build(),
+				User.withUsername("bar").password("{noop}demo").roles("USER").build(),
+				User.withUsername("ted").password("{noop}demo").roles("USER","ADMIN").build());
+	}
+	
+	
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
 	}
 }
