@@ -18,7 +18,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -80,9 +79,9 @@ public class BoardController {
 	
 	@RequestMapping(value="/board/write/{categoryId}", method=RequestMethod.GET)
 	public String writeArticle(@PathVariable int categoryId, HttpSession session, Model model) {
-		// CSRF 토큰을 생성하여 세션에 저장
-		String csrfToken = UUID.randomUUID().toString();
-        session.setAttribute("csrfToken", csrfToken);
+		// CSRF 토큰 생성 후 세션에 저장
+		String csrfToken = UUID.randomUUID().toString(); // CSRF 토큰 생성
+        session.setAttribute("csrfToken", csrfToken);    // 세션에 저장
 		List<BoardCategory> categoryList = categoryService.selectAllCategory();
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("categoryId", categoryId);
@@ -90,12 +89,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/board/write", method=RequestMethod.POST)
-	public String writeArticle(Board board, BindingResult results, String csrfToken, HttpSession session, RedirectAttributes redirectAttrs) {
+	public String writeArticle(Board board, String csrfToken, HttpSession session, RedirectAttributes redirectAttrs) {
 		logger.info("/board/write : " + board.toString() + csrfToken);
-		if(csrfToken==null || "".equals(csrfToken)) {
-			throw new RuntimeException("CSRF 토큰이 없습니다.");
-		}else if(!csrfToken.equals(session.getAttribute("csrfToken"))) {
-			throw new RuntimeException("잘 못된 접근이 감지되었습니다.");
+		String sessionToken = (String) session.getAttribute("csrfToken");
+		if(csrfToken==null || !csrfToken.equals(sessionToken)) {
+			throw new RuntimeException("CSRF Token Error.");
 		}
 		try{
 			board.setContent(board.getContent().replace("\r\n", "<br>"));

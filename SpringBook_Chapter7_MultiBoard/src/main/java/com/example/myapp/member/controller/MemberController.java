@@ -68,11 +68,11 @@ public class MemberController {
 			logger.info(member.toString());
 			String dbPassword = member.getPassword();
 			if(dbPassword.equals(password)) { // 비밀번호 일치
-				session.setMaxInactiveInterval(600); //10분
+				session.setMaxInactiveInterval(600); // 세션 타임아웃 10분
 				session.setAttribute("userid", userid);
 				session.setAttribute("name", member.getName());
 				session.setAttribute("email", member.getEmail());
-			}else {	//비밀번호가 다름
+			}else {	// 비밀번호가 다름
 				model.addAttribute("message", "WRONG_PASSWORD");
 			}
 		}else { // 아이디가 없음
@@ -84,7 +84,7 @@ public class MemberController {
 	
 	@RequestMapping(value="/member/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session, HttpServletRequest request) {
-		session.invalidate(); //로그아웃
+		session.invalidate();
 		return "home";
 	}
 	
@@ -97,7 +97,6 @@ public class MemberController {
 			model.addAttribute("message", "UPDATE_USER_INFO");
 			return "member/update";
 		}else {
-			//userid가 세션에 없을 때 (로그인하지 않았을 때)
 			model.addAttribute("message", "NOT_LOGIN_USER");
 			return "member/login";
 		}
@@ -127,7 +126,6 @@ public class MemberController {
 			model.addAttribute("message", "MEMBER_PW_RE");
 			return "member/delete";
 		}else {
-			//userid가 세션에 없을 때 (로그인 하지 않았을 때)
 			model.addAttribute("message", "NOT_LOGIN_USER");
 			return "member/login";
 		}
@@ -142,7 +140,7 @@ public class MemberController {
 			if(password != null && password.equals(dbpw)) {
 				member.setPassword(password);
 				memberService.deleteMember(member) ;
-				session.invalidate();//삭제되었으면 로그아웃 처리
+				session.invalidate(); // 회원정보가 삭제되면 로그아웃 처리
 				return "member/login";
 			}else {
 				model.addAttribute("message", "WRONG_PASSWORD");
