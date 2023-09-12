@@ -19,6 +19,7 @@
     </div>
 	<div class="content">
 	<form th:action="@{/board/write}" method="post" enctype="multipart/form-data" class="form-horizontal">
+	<input type="hidden" name="csrfToken" id="csrfToken" th:value="${session.csrfToken}">
 	<div class="form-group" th:if="#{categoryList!=null}">
       <label class="control-label col-sm-2" for="name" th:text="#{CATEGORY}">CATEGORY</label>
       <div class="col-sm-4">

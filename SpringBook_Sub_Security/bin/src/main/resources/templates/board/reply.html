@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+	<div class="pg-opt">
+        <div class="row">
+            <div class="col-md-6 pc">
+                <h2>[[#{REPLY_ARTICLE}]]</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li>[[#{BOARD}]]</li>
+                    <li class="active">[[#{REPLY_ARTICLE}]]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<div class="content">
+	<form th:action="@{/board/reply}" method="post" enctype="multipart/form-data" class="form-horizontal">
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="writer">[[#{WRITER}]]</label>
+      <div class="col-sm-2">
+        <input type="text" name="writer" id="writer" th:value="${session.name}" th:readonly="${session.name!=null ? 'readonly': false}" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="email">[[#{EMAIL}]]</label>
+      <div class="col-sm-4">
+        <input type="text" name="email" id="email" th:value="${session.email}" th:readonly="${session.email!=null ? 'readonly': false}" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="password">[[#{PASSWORD}]]</label>
+      <div class="col-sm-2">
+        <input type="password" name="password" id="password" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="title">[[#{TITLE}]]</label>
+      <div class="col-sm-8">
+        <input type="text" name="title" id="title" class="form-control" th:value="${board.title}" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="content">[[#{CONTENT}]]</label>
+      <div class="col-sm-8">
+        <textarea name="content" rows="10" cols="100" class="form-control">[[${board.content}]]</textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="photo">[[#{FILE}]]</label>
+      <div class="col-sm-8">
+        <input type="file" id="i_file" name="file">
+      </div>
+    </div>
+
+    <div class="form-group">
+    	<div class="col-sm-offset-2 col-sm-8">
+			<input type="hidden" name="boardId" th:value="${board.boardId}">
+			<input type="hidden" name="categoryId" th:value="${board.categoryId}">
+			<input type="hidden" name="masterId" th:value="${board.masterId}">
+			<input type="hidden" name="replyNumber" th:value="${board.replyNumber}">
+			<input type="hidden" name="replyStep" th:value="${board.replyStep}">
+			<input type="submit" id="i_submit" class="btn btn-info" th:value="#{SAVE}"> 
+			<input type="reset" class="btn btn-info" th:value="#{CANCEL}">
+		</div>
+	</div>
+	</form>
+	</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+</html>

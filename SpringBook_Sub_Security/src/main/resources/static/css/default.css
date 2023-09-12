@@ -1,0 +1,100 @@
+@charset "utf-8";
+@media only screen and (max-width:420px), only screen and (max-device-width:420px), handheld{
+    .pc {
+        display: none;  /* 테이블에서 collapse에 적용된다. */
+        visibility: hidden;
+    }
+
+    td.pc {
+        visibility: collapse;
+    }
+
+    .content {
+        padding: 3px !important;
+        padding-bottom: 3px !important;
+        min-height: 250px !important;
+    }
+
+    h1,h2,h3,h4 {
+        font-size: 1.5em !important;
+    }
+}
+
+@media only screen and (max-width:991px) {
+	.pc {
+        display: none;  /* 테이블에서 collapse에 적용된다. */
+        visibility: hidden;
+    }
+    
+    /* dandelion datatables 검색과 다운로드 버튼 안보이게 */
+    .dataTables_filter {
+    	display: none;
+        visibility: hidden;
+    }
+    
+    .dataTables_export {
+    	display: none;
+        visibility: hidden;
+    }
+}
+
+body div.content {
+	min-height: 350px;
+	padding-top: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+td.board_content {
+	white-space: pre-wrap;
+}
+
+.hover {
+    border: 2px solid #000;
+    background-color: #bbb;
+}
+
+input[required] {
+    border-color: #00F;
+    box-shadow: 0 0 3px rgba(0, 0, 255, .5);
+}
+input:invalid {
+    border-color: #F00;
+    box-shadow: 0 0 5px rgba(255, 0, 0, .8);
+}
+
+.pg-opt > .row {
+    margin-left: 0px !important; 
+}
+
+.col-md-6 > .breadcrumb {
+	text-align: right !important;
+}
+
+audio, video {
+    transition: all 1s ease;
+    vertical-align: top;
+}
+
+.setup {
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    font-size: 102%;
+    height: 47px;
+    position: absolute;
+}
+p { padding: 1em; }
+li {
+    border-bottom: 1px solid rgb(189, 189, 189);
+    border-left: 1px solid rgb(189, 189, 189);
+    padding: .5em;
+}
+
+.startconference{
+	width: 400px;
+	border-radius : 8px;
+	background: #2a2b25;
+	color : white;
+	font-family: 'Jeju Gothic', serif;
+	margin : 02.em;
+}

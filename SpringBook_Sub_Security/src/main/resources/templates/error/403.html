@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+<div class="content">
+	<div class="jumbotron">
+		<h2 style="color:red;">Access denied</h2>
+		<p><span sec:authentication="principal.authorities"></span>권한으로 접근할 수 업습니다.</p>
+		<th:block th:each="ste : ${stackTrace}">    [[${ste}]] 
+		</th:block>
+		<p><a class="btn btn-primary" th:href="@{/}">Home</a></p>
+	</div>
+</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+</html>

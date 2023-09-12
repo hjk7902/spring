@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+    <div class="pg-opt">
+        <div class="row">
+            <div class="col-md-6 pc">
+                <h2>[[#{CONTENT}]]</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li>[[#{BOARD}]]</li>
+                    <li class="active">[[#{CONTENT}]]</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<div class="content">
+	<table class="table table-bordered">
+	<tr class="pc">
+		<td colspan=2 align="right">
+		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info">[[#{BOARD_LIST}]]</button></a>
+		<a th:href="@{/board/write/{categoryId}(categoryId=${categoryId})}"><button type="button" class="btn btn-info">[[#{WRITE_NEW_ARTICLE}]]</button></a>
+		<a th:href="@{/board/reply/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info">[[#{REPLY}]]</button></a>
+		<a th:href="@{/board/update/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info">[[#{UPDATE}]]</button></a>
+		<a th:href="@{/board/delete/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info">[[#{DELETE}]]</button></a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">[[#{BOARD_ID}]]</td>
+		<td>[[${board.boardId}]]</td>
+	</tr>
+	<tr>
+		<td width="20%">[[#{WRITER}]]</td>
+		<td>[[${board.writer}]]</td>
+	</tr>
+	<tr>
+		<td width="20%">[[#{WRITE_DATE}]]</td>
+		<td th:text="${#dates.format(board.writeDate, 'YYYY-MM-dd')}"/></td>
+	</tr>
+	<tr>
+		<td>[[#{SUBJECT}]]</td>
+		<td>[[${board.title}]]</td>
+	</tr>
+	<tr>
+		<td>[[#{CONTENT}]]</td>
+		<td class="board_content" th:utext="${board.content}">내용</td>
+	</tr>
+    <!-- th:block th:if="${userid!=null}"-->
+	<tr th:if="${board.fileName!=null}">
+		<td>[[#{FILE}]]</td>
+		<td>
+		<img th:src="@{/file/{id}(id=${board.fileId})}"
+			 th:if="${fileType=='.JPG' ||  fileType=='.JPEG' || fileType=='.PNG' || fileType=='.GIF'}" class="img-thumbnail"><br>
+		<a th:href="@{/file/{fileId}(fileId=${board.fileId})}">[[${board.fileName}]] ([[${#numbers.formatDecimal(board.fileSize,3,'COMMA',2,'POINT')}]]byte)</a>
+		</td>
+	</tr>
+    <!-- /th:block-->
+	<tr>
+		<td colspan=2 align="right">
+		<a th:href="@{/board/cat/{categoryId}/{page}(categoryId=${categoryId}, page=${page})}"><button type="button" class="btn btn-info">[[#{BOARD_LIST}]]</button></a>
+		<a th:href="@{/board/write/{categoryId}(categoryId=${categoryId})}"><button type="button" class="btn btn-info">[[#{WRITE_NEW_ARTICLE}]]</button></a>
+		<a th:href="@{/board/reply/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info">[[#{REPLY}]]</button></a>
+		<a th:href="@{/board/update/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info">[[#{UPDATE}]]</button></a>
+		<a th:href="@{/board/delete/{boardId}(boardId=${board.boardId})}"><button type="button" class="btn btn-info">[[#{DELETE}]]</button></a>
+		</td>
+	</tr>
+	</table>
+</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+</html>
