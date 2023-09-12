@@ -20,9 +20,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -47,7 +47,7 @@ public class BoardController {
 	@Autowired
 	IBoardCategoryService categoryService;
 		
-	@RequestMapping("/board/cat/{categoryId}/{page}")
+	@GetMapping("/board/cat/{categoryId}/{page}")
 	public String getListByCategory(@PathVariable int categoryId, @PathVariable int page, HttpSession session, Model model) {
 		session.setAttribute("page", page);
 		model.addAttribute("categoryId", categoryId);
@@ -78,12 +78,12 @@ public class BoardController {
 		return "board/list";
 	}
 
-	@RequestMapping("/board/cat/{categoryId}")
+	@GetMapping("/board/cat/{categoryId}")
 	public String getListByCategory(@PathVariable int categoryId, HttpSession session, Model model) {
 		return getListByCategory(categoryId, 1, session, model);
 	}
 	
-	@RequestMapping("/board/{boardId}/{page}")
+	@GetMapping("/board/{boardId}/{page}")
 	public String getBoardDetails(@PathVariable int boardId, @PathVariable int page, Model model) {
 		Board board = boardService.selectArticle(boardId);
 		String fileName = board.getFileName();
@@ -99,12 +99,12 @@ public class BoardController {
 		return "board/view";
 	}
 
-	@RequestMapping("/board/{boardId}")
+	@GetMapping("/board/{boardId}")
 	public String getBoardDetails(@PathVariable int boardId, Model model) {
 		return getBoardDetails(boardId, 1, model);
 	}
 	
-	@RequestMapping(value="/board/write/{categoryId}", method=RequestMethod.GET)
+	@GetMapping(value="/board/write/{categoryId}")
 	public String writeArticle(@PathVariable int categoryId, HttpSession session, Model model) {
 		// CSRF 토큰을 생성하여 세션에 저장
 		String csrfToken = UUID.randomUUID().toString();
@@ -115,7 +115,7 @@ public class BoardController {
 		return "board/write";
 	}
 	
-	@RequestMapping(value="/board/write", method=RequestMethod.POST)
+	@PostMapping(value="/board/write")
 	public String writeArticle(Board board, BindingResult results, String csrfToken, HttpSession session, RedirectAttributes redirectAttrs) {
 		logger.info("/board/write : " + board.toString() + csrfToken);
 		String sessionToken = (String) session.getAttribute("csrfToken");
@@ -144,7 +144,7 @@ public class BoardController {
 		return "redirect:/board/cat/"+board.getCategoryId();
 	}
 
-	@RequestMapping("/file/{fileId}")
+	@GetMapping("/file/{fileId}")
 	public ResponseEntity<byte[]> getFile(@PathVariable int fileId) {
 		BoardUploadFile file = boardService.getFile(fileId);
 		logger.info("getFile " + file.toString());
@@ -161,7 +161,7 @@ public class BoardController {
 		return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
 	}
 	
-	@RequestMapping(value="/board/reply/{boardId}", method=RequestMethod.GET)
+	@GetMapping(value="/board/reply/{boardId}")
 	public String replyArticle(@PathVariable int boardId, Model model) {
 		Board board = boardService.selectArticle(boardId);
 		board.setWriter("");
@@ -173,7 +173,7 @@ public class BoardController {
 		return "board/reply";
 	}
 	
-	@RequestMapping(value="/board/reply", method=RequestMethod.POST)
+	@PostMapping(value="/board/reply")
 	public String replyArticle(Board board, RedirectAttributes redirectAttrs, HttpSession session) {
 		logger.info("/board/reply : " + board.toString());
 		try{
@@ -202,7 +202,7 @@ public class BoardController {
 		}
 	}
 
-	@RequestMapping(value="/board/update/{boardId}", method=RequestMethod.GET)
+	@GetMapping(value="/board/update/{boardId}")
 	public String updateArticle(@PathVariable int boardId, Model model) {
 		List<BoardCategory> categoryList = categoryService.selectAllCategory();
 		Board board = boardService.selectArticle(boardId);
@@ -213,7 +213,7 @@ public class BoardController {
 		return "board/update";
 	}
 
-	@RequestMapping(value="/board/update", method=RequestMethod.POST)
+	@PostMapping(value="/board/update")
 	public String updateArticle(Board board, RedirectAttributes redirectAttrs) {
 		logger.info("/board/update " + board.toString());
 		String dbPassword = boardService.getPassword(board.getBoardId());
@@ -246,7 +246,7 @@ public class BoardController {
 		return "redirect:/board/"+board.getBoardId();
 	}
 
-	@RequestMapping(value="/board/delete/{boardId}", method=RequestMethod.GET)
+	@GetMapping(value="/board/delete/{boardId}")
 	public String deleteArticle(@PathVariable int boardId, Model model) {
 		Board board = boardService.selectDeleteArticle(boardId);
 		model.addAttribute("categoryId", board.getCategoryId());
@@ -255,7 +255,7 @@ public class BoardController {
 		return "board/delete";
 	}
 	
-	@RequestMapping(value="/board/delete", method=RequestMethod.POST)
+	@PostMapping(value="/board/delete")
 	public String deleteArticle(Board board, HttpSession session, RedirectAttributes model) {
 		try {
 			String dbpw = boardService.getPassword(board.getBoardId());
@@ -273,7 +273,7 @@ public class BoardController {
 		}
 	}
 
-	@RequestMapping("/board/search/{page}")
+	@GetMapping("/board/search/{page}")
 	public String search(@RequestParam(required=false, defaultValue="") String keyword, @PathVariable int page, HttpSession session, Model model) {
 		try {
 			List<Board> boardList = boardService.searchListByContentKeyword(keyword, page);
@@ -313,14 +313,14 @@ public class BoardController {
 		return "error/runtime";
 	}
 	
-	@RequestMapping("/json/{boardId}")
+	@GetMapping("/json/{boardId}")
 	@ResponseBody
 	public Board getBoardDetailsJSON(@PathVariable int boardId) {
 		Board board = boardService.selectArticle(boardId);
 		return board;
 	}
 	
-	@RequestMapping("/json2/{boardId}")
+	@GetMapping("/json2/{boardId}")
 	@ResponseBody
 	public Map<String, Object> getBoardDetailsJSON2(@PathVariable int boardId) {
 		Map<String, Object> myMap = new HashMap<String, Object>();

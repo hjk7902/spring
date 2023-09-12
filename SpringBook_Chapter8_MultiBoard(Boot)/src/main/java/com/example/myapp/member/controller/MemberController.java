@@ -11,9 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.example.myapp.member.MemberValidator;
 import com.example.myapp.member.model.Member;
@@ -36,7 +36,7 @@ public class MemberController {
 		binder.setValidator(memberValidator);
 	}
 	
-	@RequestMapping(value="/member/insert", method=RequestMethod.GET)
+	@GetMapping(value="/member/insert")
 	public String insertMember(HttpSession session, Model model) {
 		String csrfToken = UUID.randomUUID().toString();
         session.setAttribute("csrfToken", csrfToken);
@@ -45,7 +45,7 @@ public class MemberController {
 		return "member/form";
 	}
 
-	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
+	@PostMapping(value="/member/insert")
 	public String insertMember(@Validated Member member, BindingResult result, String csrfToken, HttpSession session, Model model) {
 		if(csrfToken==null || "".equals(csrfToken)) {
 			throw new RuntimeException("CSRF 토큰이 없습니다.");
@@ -73,12 +73,12 @@ public class MemberController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/member/login", method=RequestMethod.GET)
+	@GetMapping(value="/member/login")
 	public String login() {
 		return "member/login";
 	}
 	
-	@RequestMapping(value="/member/login", method=RequestMethod.POST)
+	@PostMapping(value="/member/login")
 	public String login(String userid, String password, HttpSession session, Model model) {
 		Member member = memberService.selectMember(userid);
 		if(member != null) {
@@ -101,13 +101,13 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@RequestMapping(value="/member/logout", method=RequestMethod.GET)
+	@GetMapping(value="/member/logout")
 	public String logout(HttpSession session) {
 		session.invalidate(); //로그아웃
 		return "home";
 	}
 	
-	@RequestMapping(value="/member/update", method=RequestMethod.GET)
+	@GetMapping(value="/member/update")
 	public String updateMember(HttpSession session, Model model) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid != null && !userid.equals("")) {
@@ -122,7 +122,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/update", method=RequestMethod.POST)
+	@PostMapping(value="/member/update")
 	public String updateMember(@Validated Member member, BindingResult result, HttpSession session, Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("member", member);
@@ -141,7 +141,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/delete", method=RequestMethod.GET)
+	@GetMapping(value="/member/delete")
 	public String deleteMember(HttpSession session, Model model) {
 		String userid = (String)session.getAttribute("userid");
 		if(userid != null && !userid.equals("")) {
@@ -156,7 +156,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/delete", method=RequestMethod.POST)
+	@PostMapping(value="/member/delete")
 	public String deleteMember(String password, HttpSession session, Model model) {
 		try {
 			Member member = new Member();

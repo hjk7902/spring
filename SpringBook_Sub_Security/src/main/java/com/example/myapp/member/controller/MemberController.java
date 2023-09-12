@@ -15,9 +15,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.myapp.member.MemberValidator;
@@ -44,13 +44,13 @@ public class MemberController {
 		binder.setValidator(memberValidator);
 	}
 	
-	@RequestMapping(value="/member/insert", method=RequestMethod.GET)
+	@GetMapping(value="/member/insert")
 	public String insertMember(Model model) {
 		model.addAttribute("member", new Member());
 		return "member/form";
 	}
 	
-	@RequestMapping(value="/member/insert", method=RequestMethod.POST)
+	@PostMapping(value="/member/insert")
 	public String insertMember(@Validated Member member, BindingResult result, String csrfToken, HttpSession session, Model model) {
 		String sessionToken = (String) session.getAttribute("csrfToken");
 		if(csrfToken==null || !csrfToken.equals(sessionToken)) {
@@ -81,12 +81,12 @@ public class MemberController {
 		return "home";
 	}
 	
-	@RequestMapping(value="/member/login", method=RequestMethod.GET)
+	@GetMapping(value="/member/login")
 	public String login() {
 		return "member/login";
 	}
 	
-//	@RequestMapping(value="/member/login", method=RequestMethod.POST)
+//	@PostMapping(value="/member/login")
 //	public String login(String userid, String password, HttpSession session, Model model) {
 //		Member member = memberService.selectMember(userid);
 //		if(member != null) {
@@ -109,13 +109,13 @@ public class MemberController {
 //		return "member/login";
 //	}
 //	
-//	@RequestMapping(value="/member/logout", method=RequestMethod.GET)
+//	@GetMapping(value="/member/logout")
 //	public String logout(HttpSession session) {
 //		session.invalidate(); //로그아웃
 //		return "home";
 //	}
 
-	@RequestMapping(value="/member/update", method=RequestMethod.GET)
+	@GetMapping(value="/member/update")
 	public String updateMember(Model model) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String userid = auth.getName();
@@ -132,7 +132,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/update", method=RequestMethod.POST)
+	@PostMapping(value="/member/update")
 	public String updateMember(@Validated Member member, BindingResult result, Model model) {
 		if(result.hasErrors()) {
 			model.addAttribute("member", member);
@@ -154,7 +154,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/delete", method=RequestMethod.GET)
+	@GetMapping(value="/member/delete")
 	public String deleteMember(Model model, Principal principal) {
 		String userid = principal.getName();
 //		String userid = (String)session.getAttribute("userid");
@@ -170,7 +170,7 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value="/member/delete", method=RequestMethod.POST)
+	@PostMapping(value="/member/delete")
 	public String deleteMember(String password, RedirectAttributes model) {
 		try {
 			Member member = new Member();
