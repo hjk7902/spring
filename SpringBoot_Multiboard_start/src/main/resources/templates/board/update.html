@@ -1,91 +1,84 @@
-<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<fmt:setBundle basename="i18n/board"/>
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
-<jsp:include page="/WEB-INF/views/include/staticFiles.jsp"/>
+<head></head> 
 <body>
-<jsp:include page="/WEB-INF/views/include/bodyHeader.jsp"/>
+<div></div>
 <div class="container">
 	<div class="pg-opt">
         <div class="row">
             <div class="col-md-6 pc">
-                <h2><fmt:message key="UPDATE_ARTICLE"/></h2>
+                <h2>UPDATE ARTICLE</h2>
             </div>
             <div class="col-md-6">
                 <ol class="breadcrumb">
-                    <li><fmt:message key="BOARD"/></li>
-                    <li class="active"><fmt:message key="UPDATE_ARTICLE"/></li>
+                    <li>BOARD</li>
+                    <li class="active">UPDATE ARTICLE</li>
                 </ol>
             </div>
         </div>
     </div>
 	<div class="content">
-	<form action="<c:url value='/board/update'/>" method="post" enctype="multipart/form-data" class="form-horizontal">
-	<c:if test="${!empty categoryList}">
+	<form action="/board/update" method="post" enctype="multipart/form-data" class="form-horizontal">
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="name"><fmt:message key="CATEGORY"/></label>
+      <label class="control-label col-sm-2" for="name">CATEGORY</label>
       <div class="col-sm-4">
         <select name="categoryId" id="categoryId" class="form-control" required>
-        	<c:forEach var="category" items="${categoryList}">
-        	<option value="${category.categoryId}" ${category.categoryId eq board.categoryId ? "selected" : ""}>${category.categoryName}</option>
-        	</c:forEach>
+        	<option value=""></option>
         </select>
       </div>
     </div>
-    </c:if>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="writer"><fmt:message key="WRITER"/></label>
+      <label class="control-label col-sm-2" for="writer">WRITER</label>
       <div class="col-sm-2">
-        <input type="text" name="writer" id="writer" class="form-control" value="${board.writer}" readonly>
+        <input type="text" name="writer" id="writer" class="form-control" readonly>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email"><fmt:message key="EMAIL"/></label>
+      <label class="control-label col-sm-2" for="email">EMAIL</label>
       <div class="col-sm-4">
-        <input type="text" name="email" id="email" class="form-control" value="${board.email}" required readonly>
+        <input type="text" name="email" id="email" class="form-control" required readonly>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="password"><fmt:message key="PASSWORD"/></label>
+      <label class="control-label col-sm-2" for="password">PASSWORD</label>
       <div class="col-sm-2">
         <input type="password" name="password" id="password" class="form-control" required>
-      </div>${passwordError}
+      </div><span></span>      
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="title"><fmt:message key="TITLE"/></label>
+      <label class="control-label col-sm-2" for="title">TITLE</label>
       <div class="col-sm-8">
-        <input type="text" name="title" id="title" class="form-control" value="${board.title}" required>
+        <input type="text" name="title" id="title" class="form-control" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="content"><fmt:message key="CONTENT"/></label>
+      <label class="control-label col-sm-2" for="content">CONTENT</label>
       <div class="col-sm-8">
-        <textarea name="content" rows="15" cols="100" class="form-control">${board.content}</textarea>
+        <textarea name="content" rows="15" cols="100" class="form-control"></textarea>
       </div>
     </div>
-    <!-- c:if test="${!empty userid}"-->
+    <!-- th:block th:if="${userid!=null}"-->
     <div class="form-group">
-      <label class="control-label col-sm-2" for="photo"><fmt:message key="FILE"/></label>
+      <label class="control-label col-sm-2" for="photo">FILE</label>
       <div class="col-sm-8">
-      	<input type="hidden" name="fileId" value="${board.fileId}">
-        <input type="file" id="i_file" name="file">${board.fileName}
+      	<input type="hidden" name="fileId">
+        <input type="file" id="i_file" name="file">fileName
       </div>
     </div>
-    <!-- /c:if-->
+    <!-- /th:block-->
     <div class="form-group">
     	<div class="col-sm-offset-2 col-sm-8">
-			<input type="hidden" name="boardId" value="${board.boardId}">
-			<input type="hidden" name="masterId" value="${board.masterId}">
-			<input type="hidden" name="replyNumber" value="${board.replyNumber}">
-			<input type="hidden" name="replyStep" value="${board.replyStep}">
-			<input type="submit" id="i_submit" class="btn btn-info" value="<fmt:message key="UPDATE"/>"> <input type="reset" class="btn btn-info" value="<fmt:message key="CANCEL"/>">
+			<input type="hidden" name="boardId">
+			<input type="hidden" name="masterId">
+			<input type="hidden" name="replyNumber">
+			<input type="hidden" name="replyStep">
+			<input type="submit" id="i_submit" class="btn btn-info" value="UPDATE">
+			<input type="reset" class="btn btn-info" value="CANCEL" onclick="history.back()">
 		</div>
 	</div>
 	</form>
 	</div>
 </div>
-<jsp:include page="/WEB-INF/views/include/footer.jsp"/>
+<footer></footer> 
 </body>
 </html>

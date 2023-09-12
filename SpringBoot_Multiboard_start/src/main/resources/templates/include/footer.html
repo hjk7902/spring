@@ -1,7 +1,6 @@
-<%@ page contentType="text/html; charset=utf-8" trimDirectiveWhitespaces="true"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html xmlns:th="http://www.thymeleaf.org">
 <!-- FOOTER -->
-<footer class="footer">
+<footer class="footer" th:fragment="footer">
     <div class="container">
         <div class="row">
             <div class="col-md-3">
@@ -46,10 +45,11 @@
                     <h4>About us</h4>
                     <p class="no-margin">
                     Java developer specialist group community. It something special for your.
-                    <a href="<c:url value="/"/>" class="btn btn-block btn-base btn-icon fa-check"><span>Try it now</span></a>
+                    <a th:href="@{/}" class="btn btn-block btn-base btn-icon fa-check"><span>Try it now</span></a>
                     </p>
                 </div>
             </div>
         </div>
 	</div>
 </footer>
+</html>
