@@ -41,7 +41,7 @@ public class MemberController {
 		String csrfToken = UUID.randomUUID().toString();
         session.setAttribute("csrfToken", csrfToken);
 		logger.info("/member/insert, GET", csrfToken);
-		model.addAttribute("member", new Member());
+		model.addAttribute("member", new Member());   // 폼 입력값 검증에 사용
 		return "member/form";
 	}
 
