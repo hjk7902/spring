@@ -1,6 +1,7 @@
 package com.example.myapp.member.controller;
 
 import java.security.Principal;
+import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -45,8 +46,11 @@ public class MemberController {
 	}
 	
 	@GetMapping(value="/member/insert")
-	public String insertMember(Model model) {
-		model.addAttribute("member", new Member());
+	public String insertMember(HttpSession session, Model model) {
+		String csrfToken = UUID.randomUUID().toString();
+        session.setAttribute("csrfToken", csrfToken);
+		logger.info("/member/insert, GET", csrfToken);
+		model.addAttribute("member", new Member());   // 폼 입력값 검증에 사용
 		return "member/form";
 	}
 	
