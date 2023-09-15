@@ -43,19 +43,19 @@
 	<div class="form-group">
       <label class="control-label col-sm-2" for="name" th:text="#{MEMBER_NAME}">MEMBER NAME</label>
       <div class="col-sm-4">
-        <input type="text" name="name" id="name" th:value="${member.name}" class="form-control" required>
+        <input type="text" name="name" id="name" th:value="${member.name}" class="form-control" autocomplete="off" required>
       </div>
     </div>
 	<div class="form-group">
       <label class="control-label col-sm-2" for="phone" th:text="#{MEMBER_PHONE}">MEMBER PHONE</label>
       <div class="col-sm-6">
-        <input type="text" name="phone" id="phone" th:value="${member.phone}" class="form-control" required>
+        <input type="text" name="phone" id="phone" th:value="${member.phone}" class="form-control" autocomplete="off" required>
       </div>
     </div>
 	<div class="form-group">
       <label class="control-label col-sm-2" for="email" th:text="#{MEMBER_EMAIL}">MEMBER EMAIL</label>
       <div class="col-sm-8">
-        <input type="email" name="email" id="email" th:value="${member.email}" class="form-control" required>
+        <input type="email" name="email" id="email" th:value="${member.email}" class="form-control" autocomplete="off" required>
       </div>
     </div>
     <div class="form-group">

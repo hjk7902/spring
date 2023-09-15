@@ -21,9 +21,9 @@
 	<form th:action="@{/board/write}" method="post" enctype="multipart/form-data" class="form-horizontal">
 	<input type="hidden" name="csrfToken" id="csrfToken" th:value="${session.csrfToken}">
 	<div class="form-group" th:if="#{categoryList!=null}">
-      <label class="control-label col-sm-2" for="name" th:text="#{CATEGORY}">CATEGORY</label>
+      <label for="categoryId" class="control-label col-sm-2" th:text="#{CATEGORY}">CATEGORY</label>
       <div class="col-sm-4">
-        <select name="categoryId" class="form-control" required>
+        <select name="categoryId" id="categoryId" class="form-control">
         	<th:block th:each="category: ${categoryList}">
         	<option th:value="${category.categoryId}" th:text="${category.categoryName}" th:selected="${category.categoryId eq categoryId}"></option>
         	</th:block>
@@ -31,15 +31,15 @@
       </div>
     </div>
 	<div class="form-group">
-      <label class="control-label col-sm-2" for="name" th:text="#{WRITER}">WRITER</label>
+      <label for="writer" class="control-label col-sm-2" th:text="#{WRITER}">WRITER</label>
       <div class="col-sm-2">
-        <input type="text" name="writer" id="name" th:value="${session.name}" th:readonly="${session.name!=null ? 'readonly': false}" class="form-control">
+        <input type="text" name="writer" id="writer" th:value="${session.name}" th:readonly="${session.name!=null ? 'readonly': false}" class="form-control" required>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="email" th:text="#{EMAIL}">EMAIL</label>
+      <label for="email" class="control-label col-sm-2" th:text="#{EMAIL}">EMAIL</label>
       <div class="col-sm-4">
-        <input type="text" name="email" id="email" th:value="${session.email}" th:readonly="${session.email!=null ? 'readonly': false}" class="form-control" required>
+        <input type="text" name="email" id="email" th:value="${session.email}" th:readonly="${session.email!=null ? 'readonly': false}" class="form-control" autocomplete="off" required>
       </div>
     </div>
     <div class="form-group">
@@ -57,13 +57,13 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="content" th:text="#{CONTENT}">CONTENT</label>
       <div class="col-sm-8">
-        <textarea name="content" rows="10" cols="100" class="form-control"></textarea>
+        <textarea name="content" id="content" rows="10" cols="100" class="form-control"></textarea>
       </div>
     </div>
     <div class="form-group">
-      <label class="control-label col-sm-2" for="photo" th:text="#{FILE}">FILE</label>
+      <label class="control-label col-sm-2" for="file" th:text="#{FILE}">FILE</label>
       <div class="col-sm-8">
-        <input type="file" id="i_file" name="file"><span id="droparea" class="help-block" th:text="#{FILESIZE_ERROR}">FILESIZE ERROR</span>
+        <input type="file" name="file" id="file"><span id="droparea" class="help-block" th:text="#{FILESIZE_ERROR}">FILESIZE ERROR</span>
       </div>
     </div>
     <div class="form-group">
