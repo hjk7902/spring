@@ -29,7 +29,7 @@
                     <div class="bg-light-gray">
                         <form class="form-horizontal form-light p-15" role="form">
                             <div class="input-group input-group-lg">
-                                <input type="text" class="form-control" placeholder="I want to find ...">
+                                <input type="text" class="form-control" id="search" placeholder="I want to find ...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-white" type="button">
                                         <i class="fa fa-search"></i>

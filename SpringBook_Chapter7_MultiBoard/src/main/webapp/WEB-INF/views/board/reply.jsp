@@ -26,13 +26,13 @@
 	<div class="form-group">
       <label class="control-label col-sm-2" for="writer"><fmt:message key="WRITER"/></label>
       <div class="col-sm-2">
-        <input type="text" name="writer" id="writer" value="${sessionScope.name}" ${!empty sessionScope.name ? "readonly" : "" } class="form-control" required>
+        <input type="text" name="writer" id="writer" class="form-control" value="${sessionScope.name}" ${!empty sessionScope.name ? "readonly" : "" } autocomplete="off" required>
       </div>
     </div>
     <div class="form-group">
       <label class="control-label col-sm-2" for="email"><fmt:message key="EMAIL"/></label>
       <div class="col-sm-4">
-        <input type="text" name="email" id="email" value="${sessionScope.email}" ${!empty sessionScope.email ? "readonly" : "" } class="form-control" required>
+        <input type="text" name="email" id="email" class="form-control" value="${sessionScope.email}" ${!empty sessionScope.email ? "readonly" : "" } autocomplete="off" required>
       </div>
     </div>
     <div class="form-group">
@@ -50,14 +50,14 @@
     <div class="form-group">
       <label class="control-label col-sm-2" for="content"><fmt:message key="CONTENT"/></label>
       <div class="col-sm-8">
-        <textarea name="content" rows="10" cols="100" class="form-control">${board.content}</textarea>
+        <textarea name="content" id="content" rows="10" cols="100" class="form-control">${board.content}</textarea>
       </div>
     </div>
 
     <div class="form-group">
-      <label class="control-label col-sm-2" for="photo"><fmt:message key="FILE"/></label>
+      <label class="control-label col-sm-2" for="file"><fmt:message key="FILE"/></label>
       <div class="col-sm-8">
-        <input type="file" id="i_file" name="file">
+        <input type="file" id="file" name="file">
       </div>
     </div>
 
@@ -68,7 +68,8 @@
 			<input type="hidden" name="masterId" value="${board.masterId}">
 			<input type="hidden" name="replyNumber" value="${board.replyNumber}">
 			<input type="hidden" name="replyStep" value="${board.replyStep}">
-			<input type="submit" id="i_submit" class="btn btn-info" value="<fmt:message key="REPLY"/>"> <input type="reset" class="btn btn-info" value="<fmt:message key="CANCEL"/>">
+			<input type="submit" class="btn btn-info" value="<fmt:message key="REPLY"/>">
+			<input type="reset" class="btn btn-info" value="<fmt:message key="CANCEL"/>">
 		</div>
 	</div>
 	</form>
