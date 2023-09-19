@@ -79,7 +79,7 @@ public class BoardController {
 	public String getListByCategory(@PathVariable int categoryId, HttpSession session, Model model) {
 		return getListByCategory(categoryId, 1, session, model);
 	}
-	
+
 	@GetMapping("/board/{boardId}/{page}")
 	public String getBoardDetails(@PathVariable int boardId, @PathVariable int page, Model model) {
 		Board board = boardService.selectArticle(boardId);
