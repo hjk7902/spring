@@ -100,7 +100,7 @@ public class BoardController {
 	public String getBoardDetails(@PathVariable int boardId, Model model) {
 		return getBoardDetails(boardId, 1, model);
 	}
-	
+
 	@GetMapping(value="/board/write/{categoryId}")
 	public String writeArticle(@PathVariable int categoryId, HttpSession session, Model model) {
 		// CSRF 토큰을 생성하여 세션에 저장
@@ -111,7 +111,7 @@ public class BoardController {
 		model.addAttribute("categoryId", categoryId);
 		return "board/write";
 	}
-	
+
 	@PostMapping(value="/board/write")
 	public String writeArticle(Board board, BindingResult results, String csrfToken, HttpSession session, RedirectAttributes redirectAttrs) {
 		logger.info("/board/write : " + board.toString() + csrfToken);
@@ -158,7 +158,7 @@ public class BoardController {
 		}
 		return new ResponseEntity<byte[]>(file.getFileData(), headers, HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value="/board/reply/{boardId}")
 	public String replyArticle(@PathVariable int boardId, Model model) {
 		Board board = boardService.selectArticle(boardId);
@@ -170,7 +170,7 @@ public class BoardController {
 		model.addAttribute("next", "reply");
 		return "board/reply";
 	}
-	
+
 	@PostMapping(value="/board/reply")
 	public String replyArticle(Board board, RedirectAttributes redirectAttrs, HttpSession session) {
 		logger.info("/board/reply : " + board.toString());
@@ -252,7 +252,7 @@ public class BoardController {
 		model.addAttribute("replyNumber", board.getReplyNumber());
 		return "board/delete";
 	}
-	
+
 	@PostMapping(value="/board/delete")
 	public String deleteArticle(Board board, HttpSession session, RedirectAttributes model) {
 		try {
