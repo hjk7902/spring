@@ -21,7 +21,7 @@
                     <p>Sign up if you would like to receive</p>
                     <form action='#' method="post" class="form-horizontal form-light">
                         <div class="input-group">
-                            <input type="email" name="email" class="form-control" placeholder="Your email address..." required>
+                            <input type="email" name="email" class="form-control" placeholder="Your email address..." autocomplete="off" required>
                             <span class="input-group-btn">
                                 <input type="submit" class="btn btn-base" value="GO!">
                             </span>
