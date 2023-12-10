@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "MyappApplication",
+            "request": "launch",
+            "mainClass": "com.example.myapp.MyappApplication",
+            "projectName": "com.example-board"
+        },
+        {
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome against localhost",
