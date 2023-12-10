@@ -12,7 +12,7 @@
 	<artifactId>board</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>board</name>
+	<name>Spring_Sub_Security</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>17</java.version>

@@ -12,7 +12,7 @@
 	<artifactId>myapp</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
-	<name>myapp</name>
+	<name>SpringBoot_Multiboard_start</name>
 	<description>Spring Boot를 이용한 게시판</description>
 	<properties>
 		<java.version>17</java.version>
