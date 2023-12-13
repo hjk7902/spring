@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Sample</title>
+</head>
+<body>
+<h1>사원정보 삭제</h1>
+[[${emp.employeeId}]]사원 [[${emp.firstName}]] [[${emp.lastName}]]의 정보를 삭제합니다.<p>
+삭제후 데이터는 복구될 수 없습니다.<p>
+<span th:text="${emp.employeeId}">사원번호</span>사원의 이메일을 입력하세요.
+<form th:action="@{/hr/delete}" method="post">
+이메일 : <input type="text" name="email" required>
+<input type="hidden" name="empid" th:value="${emp.employeeId}">
+<input type="submit" value="삭제">
+<span th:text="${message}"></span>
+</form>
+</body>
+</html>

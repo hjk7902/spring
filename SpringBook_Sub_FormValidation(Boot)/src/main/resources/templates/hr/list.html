@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Sample</title>
+</head>
+<body>
+<h1>사원 목록</h1>
+<span th:text="${message}"></span>
+<a th:href="@{/hr/insert}">신규 사원 정보 입력</a>
+<table border="1">
+<tr>
+	<th>EMPLOYEE_ID</th>
+	<th>FIRST_NAME</th>
+	<th>LAST_NAME</th>
+	<th>EMAIL</th>
+	<th>PHONE_NUMBER</th>
+	<th>HIRE_DATE</th>
+	<th>JOB_ID</th>
+	<th>SALARY</th>
+	<th>COMMISSION_PCT</th>
+	<th>MANAGER_ID</th>
+	<th>DEPARTMENT_ID</th>
+</tr>
+<tr th:each="emp: ${empList}" th:object="${emp}">
+	<td><a th:href="@{/hr/__*{employeeId}__}" th:text="*{employeeId}">employeeId</a></td>
+	<td th:text="*{firstName}">firstName</td>
+	<td th:text="${emp.lastName}">lastName</td>
+	<td th:text="*{email}">email</td>
+	<td th:text="*{phoneNumber}">phoneNumber</td>
+	<td th:text="*{hireDate}">hireDate}</td>
+	<td th:text="*{jobId}">jobId</td>
+	<td th:text="*{salary}">salary</td>
+	<td th:text="*{commissionPct}">commissionPct</td>
+	<td th:text="*{managerId}">managerId</td>
+	<td th:text="*{departmentId}">departmentId</td>
+</tr>
+</table>
+</body>
+</html>

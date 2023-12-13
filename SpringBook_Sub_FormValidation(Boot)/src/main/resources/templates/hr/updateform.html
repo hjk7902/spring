@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Sample</title>
+<style type="text/css">
+.error {
+	color : red
+}
+</style>
+</head>
+<body>
+<h1>사원정보 수정</h1>
+<form th:action="@{/hr/update}" method="post" th:object="${emp}">
+<table border="1">
+<tr>
+	<th>EMPLOYEE_ID</th>
+	<td>
+		<input type="number" th:field="*{employeeId}" required readonly>
+	</td>
+</tr>
+<tr>
+	<th>FIRST_NAME</th>
+	<td>
+		<input type="text" th:field="*{firstName}" required>
+		<span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
+	</td>
+</tr>
+<tr>
+	<th>LAST_NAME</th>
+	<td>
+		<input type="text" th:field="*{lastName}" required>
+		<span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
+	</td>
+</tr>
+<tr>
+	<th>EMAIL</th>
+	<td>
+		<input type="text" th:field="*{email}" required>
+		<span th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+	</td>
+</tr>
+<tr>
+	<th>PHONE_NUMBER</th>
+	<td>
+		<input type="text" th:field="*{phoneNumber}" required>
+		<span th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}"></span>
+	</td>
+</tr>
+<tr>
+	<th>HIRE_DATE</th>
+	<td>
+		<input type="text" th:field="*{hireDate}" required>
+		<span th:if="${#fields.hasErrors('hireDate')}" th:errors="*{hireDate}"></span>
+	</td>
+</tr>
+<tr>
+	<th>JOB_ID</th>
+	<td>
+		<select name="jobId">
+			<option th:each="job : ${jobList}" th:value="${job.jobId}" th:utext="${job.title}" th:selected="${emp.jobId}==${job.jobId}"></option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th>SALARY</th>
+	<td>
+		<input type="text" th:field="*{salary}" required>
+		<span th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}"></span>
+	</td>
+</tr>
+<tr>
+	<th>COMMISSION_PCT</th>
+	<td>
+		<input type="text" th:field="*{commissionPct}" required>
+		<span th:if="${#fields.hasErrors('commissionPct')}" th:errors="*{commissionPct}"></span>
+	</td>
+</tr>
+<tr>
+	<th>MANAGER_ID</th>
+	<td>
+		<select name="managerId">
+			<option th:each="manager: ${managerList}" th:value="${manager.managerId}" th:text="${manager.firstName}" th:selected="${emp.managerId}==${manager.managerId}"></option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th>DEPARTMENT_ID</th>
+	<td>
+		<select name="departmentId">
+			<option th:each="department: ${deptList}" th:value="${department.departmentId}" th:text="${department.departmentName}" th:selected="${emp.departmentId}==${department.departmentId}"></option>
+		</select>
+	</td>
+</tr>
+<tr>
+	<th>&nbsp;</th>
+	<td>
+		<input type="submit" value="수정"> 
+		<input type="reset" value="취소">
+	</td>
+</tr>
+</table>
+</form>
+</body>
+</html>

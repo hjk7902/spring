@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+<title>Sample</title>
+</head>
+<body>
+<h1>사원 정보 상세 조회</h1>
+<span th:text="${message}"></span>
+<table border="1" th:object="${emp}">
+<tr>
+	<th>EMPLOYEE_ID</th>
+	<td th:text="*{employeeId}">Employee ID</td>
+</tr>
+<tr>
+	<th>FIRST_NAME</th>
+	<td th:text="*{firstName}">First Name</td>
+</tr>
+<tr>
+	<th>LAST_NAME</th>
+	<td th:text="*{lastName}">Last Name</td>
+</tr>
+<tr>
+	<th>EMAIL</th>
+	<td th:text="*{email}">Email</td>
+</tr>
+<tr>
+	<th>PHONE_NUMBER</th>
+	<td th:text="*{phoneNumber}">Phone Number</td>
+</tr>
+<tr>
+	<th>HIRE_DATE</th>
+	<td th:text="*{hireDate}">Hire Date</td>
+</tr>
+<tr>
+	<th>JOB_ID</th>
+	<td th:text="*{jobId}">Job ID</td>
+</tr>
+<tr>
+	<th>SALARY</th>
+	<td th:text="*{salary}">Salary</td>
+</tr>
+<tr>
+	<th>COMMISSION_PCT</th>
+	<td th:text="*{commissionPct}">Commission Percent</td>
+</tr>
+<tr>
+	<th>MANAGER_ID</th>
+	<td th:text="*{managerId}">Manager ID</td>
+</tr>
+<tr>
+	<th>DEPARTMENT_ID</th>
+	<td th:text="*{departmentId}">Department Id</td>
+</tr>
+</table>
+<a th:href="@{/hr/update/__*{employeeId}__}">수정하기</a> 
+<a th:href="@{/hr/delete/__*{employeeId}__}">삭제하기</a>
+</body>
+</html>
