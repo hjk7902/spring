@@ -18,14 +18,14 @@ import com.example.myapp.common.filter.LoginInterceptor;
 public class WebMvcConfig implements WebMvcConfigurer {
 	
 	@Bean
-	public LocaleResolver localeResolver() {
+	LocaleResolver localeResolver() {
 		SessionLocaleResolver slr = new SessionLocaleResolver();
 		slr.setDefaultLocale(Locale.KOREAN);
 		return slr;
 	}
 
 	@Bean
-	public MessageSource messageSource() {
+	MessageSource messageSource() {
 		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasenames("i18n/message");
 		messageSource.setDefaultEncoding("UTF-8");
@@ -33,14 +33,14 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	}
 	
 	@Bean
-	public LocaleChangeInterceptor localeChangeInterceptor() {
+	LocaleChangeInterceptor localeChangeInterceptor() {
 		LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
 		lci.setParamName("lang");
 		return lci;
 	}
 	
 	@Bean
-	public LoginInterceptor loginInterceptor() {
+	LoginInterceptor loginInterceptor() {
 		return new LoginInterceptor();
 	}
 	
