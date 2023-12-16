@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head></head> 
+<body>
+<div></div>
+<div class="container">
+    <div class="pg-opt">
+        <div class="row">
+            <div class="col-md-6 pc">
+                <h2>CONTENT</h2>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li>BOARD</li>
+                    <li class="active">CONTENT</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<div class="content">
+	<table class="table table-bordered">
+	<tr class="pc">
+		<td colspan=2 align="right">
+		<a href="/board/cat/1/1"><button type="button" class="btn btn-info">BOARD LIST</button></a>
+		<a href="/board/write/1"><button type="button" class="btn btn-info">WRITE NEW ARTICLE</button></a>
+		<a href="/board/reply/1"><button type="button" class="btn btn-info">REPLY</button></a>
+		<a href="/board/update/1"><button type="button" class="btn btn-info">UPDATE</button></a>
+		<a href="/board/delete/1"><button type="button" class="btn btn-info">DELETE</button></a>
+		</td>
+	</tr>
+	<tr>
+		<td width="20%">BOARD ID</td>
+		<td>ID</td>
+	</tr>
+	<tr>
+		<td width="20%">WRITER</td>
+		<td>작성자</td>
+	</tr>
+	<tr>
+		<td width="20%">WRITE DATE</td>
+		<td>YYYY-MM-DD</td>
+	</tr>
+	<tr>
+		<td>SUBJECT</td>
+		<td>제목</td>
+	</tr>
+	<tr>
+		<td>CONTENT</td>
+		<td class="board_content">내용</td>
+	</tr>
+    <!-- th:block th:if="${userid!=null}"-->
+	<tr>
+		<td>FILE</td>
+		<td>
+		<img src="/file/1"><br>
+		<a href="/file/1">(<span>0</span>byte)</a>
+		</td>
+	</tr>
+    <!-- /th:block-->
+	<tr>
+		<td colspan=2 align="right">
+		<a href="/board/cat/1/1"><button type="button" class="btn btn-info">BOARD LIST</button></a>
+		<a href="/board/write/1"><button type="button" class="btn btn-info">WRITE NEW ARTICLE</button></a>
+		<a href="/board/reply/1"><button type="button" class="btn btn-info">REPLY</button></a>
+		<a href="/board/update/1"><button type="button" class="btn btn-info">UPDATE</button></a>
+		<a href="/board/delete/1"><button type="button" class="btn btn-info">DELETE</button></a>
+		</td>
+	</tr>
+	</table>
+</div>
+</div>
+<footer></footer> 
+</body>
+</html>

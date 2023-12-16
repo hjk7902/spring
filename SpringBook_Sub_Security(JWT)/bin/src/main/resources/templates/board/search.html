@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+	<div class="pg-opt">
+	    <div class="row">
+	        <div class="col-md-6 pc">
+	            <h2>[[#{SEARCH_RESULT}]]
+	            <small style="color:red;" th:if="${name==null}">[[#{LOGIN}]]</small>
+	            </h2>
+	        </div>
+	        <div class="col-md-6">
+	            <ol class="breadcrumb">
+	                <li>[[#{BOARD}]]</li>
+	                <li class="active">[[#{BOARD_LIST}]]</li>
+	            </ol>
+	        </div>
+	    </div>
+    </div>
+	[[${message}]]
+	<div class="content">
+		<form th:action="@{/board/search/1}" method="get">
+			<div class="pull-right" style="margin-bottom: 5px;">
+			<div class="col-xs-9">
+		        <input type="text" name="keyword" class="form-control">
+		    </div>
+		        <input type="submit" class="btn btn-warning" th:value="#{SEARCH}">
+			</div>
+		</form>
+	    <table class="table table-hover table-bordered">
+		<thead>
+		<tr>
+			<td>[[#{CATEGORY}]]</td>
+			<td>[[#{BOARD_ID}]]</td>
+			<td class="pc">[[#{WRITER}]]</td>
+			<td>[[#{SUBJECT}]]</td>
+			<td class="pc">[[#{WRITE_DATE}]]</td>
+			<td class="pc">[[#{READ_COUNT}]]</td>
+		</tr>
+		</thead>
+		<tr th:each="board : ${boardList}">
+			<td>[[${board.categoryId}]]</td>
+			<td>[[${board.boardId}]]</td>
+			<td class="pc">[[${board.writer}]]</td>
+			<td>
+			<a th:href="@{/board/__${board.boardId}__}">[[${board.title}]]</a>
+			</td>
+			<td class="pc" th:text="${#dates.format(board.writeDate, 'YYYY-MM-dd')}"></td>
+			<td class="pc">[[${board.readCount}]]</td>
+		</tr>
+		</table>
+		<table class="table">
+		<tr>
+			<td align="left">
+				<div th:replace="~{/include/search-paging :: searchPaging}"></div> 
+			</td>
+			<td align="right">
+				&nbsp;
+			</td>
+		</tr>
+		</table>
+	</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+</html>

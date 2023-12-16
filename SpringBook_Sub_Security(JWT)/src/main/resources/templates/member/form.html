@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{/include/header :: header}"></head> 
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+	<div class="pg-opt">
+        <div class="row">
+            <div class="col-md-6 pc">
+                <h2 th:text="#{INSERT_USER_INFO}">INSERT USER INFO</h2>
+                <span th:if="${message != null}">[[#{${message}}]]</span>
+            </div>
+            <div class="col-md-6">
+                <ol class="breadcrumb">
+                    <li th:text="#{MEMBER}">MEMBER</li>
+                    <li class="active" th:text="#{INSERT_USER_INFO}">INSERT USER INFO</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+	<div class="content">
+	<form th:action="@{/member/insert}" method="post" id="joinForm" class="form-horizontal">
+	<input type="hidden" name="csrfToken" id="csrfToken" th:value="${session.csrfToken}">
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="userid" th:text="#{MEMBER_ID}">MEMBER ID</label>
+      <div class="col-sm-4">
+        <input type="text" name="userid" id="userid" th:value="${member.userid}" th:readonly="${member.userid!=null}" pattern="\w+" class="form-control" th:placeholder="#{MEMBER_ID}" required>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="password" th:text="#{MEMBER_PW}">MEMBER PASSWORD</label>
+      <div class="col-sm-4">
+        <input type="password" name="password" id="password" th:value="${member.password}" class="form-control" th:title="#{PASSWORD_TITLE}" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label col-sm-2" for="password2" th:text="#{MEMBER_PW_RE}">MEMBER PASSWORD RE</label>
+      <div class="col-sm-4">
+        <input type="password" name="password2" id="password2" class="form-control" required>
+        <span id="passwordConfirm" th:errors="${member.password2}"></span>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="name" th:text="#{MEMBER_NAME}">MEMBER NAME</label>
+      <div class="col-sm-4">
+        <input type="text" name="name" id="name" th:value="${member.name}" class="form-control" required>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="phone" th:text="#{MEMBER_PHONE}">MEMBER PHONE</label>
+      <div class="col-sm-6">
+        <input type="text" name="phone" id="phone" th:value="${member.phone}" class="form-control" required>
+      </div>
+    </div>
+	<div class="form-group">
+      <label class="control-label col-sm-2" for="email" th:text="#{MEMBER_EMAIL}">MEMBER EMAIL</label>
+      <div class="col-sm-8">
+        <input type="email" name="email" id="email" th:value="${member.email}" class="form-control" required>
+      </div>
+    </div>
+    <div class="form-group">
+    	<div class="col-sm-offset-2 col-sm-8">
+		<input type="submit" class="btn btn-info" th:value="#{SAVE}">
+		<input type="reset" class="btn btn-info" th:value="#{CANCEL}">
+		</div>
+	</div>
+	</form>
+	</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer> 
+</body>
+<script type="text/javascript">
+var pw1 = document.querySelector("#password");
+var pw2 = document.querySelector("#password2");
+var pwConfirm = document.querySelector("#passwordConfirm");
+pw2.onkeyup = function(event) {
+	if(pw1.value !== pw2.value) {
+		pwConfirm.innerText = "비밀번호가 일치하지 않습니다.";
+	}else {
+		pwConfirm.innerText = "";
+	}
+}
+</script>
+</html>

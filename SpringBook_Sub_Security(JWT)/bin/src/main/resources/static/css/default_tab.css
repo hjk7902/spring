@@ -1,0 +1,43 @@
+@charset "utf-8";
+#header{background:url(../images/layout/header_bg.png) repeat-x 0 -156px;overflow:hidden}
+#header > div{height:144px;margin:0 auto;min-width:768px;overflow:hidden;position:relative;width:100%}
+#header h1{left:30px;position:absolute;top:15px}
+#header h1 img{height:40px;width:49px}
+#header .utill{position:absolute;right:30px;top:19px}
+#header .utill ul{float:left;margin-right:15px;padding-top:12px}
+#header .utill li{background:url(../images/bullet/bullet_utill_line.png) no-repeat 0 0;float:left;line-height:16px;margin-left:8px;padding-left:9px}
+#header .utill li:first-child{background:none;margin-left:0;padding-left:0}
+#header .utill > a{float:left}
+#header .utill > a > img{height:32px;width:37px}
+#header .global{display:none}
+#header .utill .search{position:absolute;right:0;top:0;visibility:hidden;z-index:-1}
+#header .utill .active .search{visibility:visible;width:163px;z-index:10}
+#header .utill .search input[type=text]{border:1px solid #ccc;border-right:0;color:#333;float:left;font-size:14px;height:30px;line-height:30px;padding-left:8px;width:110px}
+#header .utill .search input[type=image]{float:left;height:32px;width:36px}
+#header .utill .mobile_menu{display:none}
+#gnb{display:inline-block;padding-top:72px;width:100%}
+#gnb > ul{border-top:1px solid #ddd;overflow:hidden;padding-left:23px;padding-top:20px}
+#gnb > ul > li{float:left;height:52px}
+#gnb > ul > li > a{float:left;height:26px;vertical-align:middle}
+#gnb > ul > li > a:first-child{background:url(../images/bullet/bullet_gnb_line.png) no-repeat 0 65%;font-size:1.5em;font-weight:bold;line-height:26px;padding-left:15px;text-decoration:none;vertical-align:middle}
+#gnb > ul > li > a.first{background:none}
+#gnb > ul > li > a:hover{color:#dd2222}
+#gnb > ul > li > a.closed{height:18px;padding-top:8px;visibility:hidden}
+#gnb > ul > li.on{background:url(../images/layout/gnb_select_bullet.gif) no-repeat 55% 97%}
+#gnb > ul > li.on > a{color:#dd2222}
+#gnb ul li div.sub_gnb{background:#fff;left:0;position:absolute;top:144px;visibility:hidden;width:100%}  /* 2014-02-03 수정 | width 1100px --> 100% */
+#gnb ul li div p{display:none;float:left;width:190px}
+#gnb ul li div div{float:left;width:100%}
+#gnb ul li div div dl{border-top:1px solid #ddd;overflow:hidden}
+#gnb ul li div div dl:first-child{border-top:0}
+#gnb ul li div div dl dt{color:#555;float:left;font-size:1.3em;font-weight:bold;height:36px;line-height:32px;padding-left:20px;width:140px}
+#gnb ul li div div dl dt a{color:#555;display:block;font-weight:bold;height:36px;line-height:32px}
+#gnb ul li div div dl dt.on{background:#e44548;color:#fff}
+#gnb ul li div div dl dt.on a{color:#fff}
+#gnb ul li div div dl dt.on a:hover{color:#fff;text-decoration:underline}
+#gnb ul li div div dl dd{/*float:left;height:36px*/} /* 2014-02-03 수정*/
+#gnb ul li div div dl dd ul{overflow:hidden}
+#gnb ul li div div dl dd ul li{float:left;height:36px;padding-left:18px}
+#gnb ul li div div dl dd a{color:#555;display:block;line-height:32px}
+#gnb ul li div div dl dd a:hover{color:#000;text-decoration:underline}
+#gnb ul li div div dl dd a.on{color:#000;text-decoration:underline}

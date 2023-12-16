@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Body Header -->
+<div th:fragment="bodyHeader" class="container">
+<div id="divHeaderWrapper">
+	<header class="header-standard-2">     
+    <!-- MAIN NAV -->
+    <div class="navbar navbar-wp navbar-arrow mega-nav" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars icon-custom">[[#{title}]]</i>
+            </button>
+            <p>
+            <a th:href="@{/}"><span style="padding-left:15px; width:200px">[[#{title}]]</span></a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="hidden-md hidden-lg">
+                    <div class="bg-light-gray">
+                        <form class="form-horizontal form-light p-15" role="form">
+                            <div class="input-group input-group-lg">
+                                <input type="text" class="form-control" placeholder="I want to find ...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-white" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </form>
+                    </div>
+                </li>
+				<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong>[[#{BOARD}]]</strong></a>
+                    <ul class="dropdown-menu">
+                    	<li><a th:href="@{/board/cat/1}">[[#{BOARD}]]</a>
+			        	<li><a th:href="@{/board/cat/2}">[[#{PDS}]]</a>
+			        	<li><a th:href="@{/board/cat/3}">[[#{GALLERY}]]</a>
+					</ul>
+				</li>
+                <li class="dropdown">
+                    <a th:href="@{/member/login}" class="dropdown-toggle" data-toggle="dropdown"><strong>[[#{MEMBER}]]</strong></a>
+                    <ul class="dropdown-menu">
+                    	<li><a th:href="@{/member/login}">[[#{MY_INFO}]]</a>
+                        <li><a th:href="@{/member/update}">[[#{UPDATE_USER_INFO}]]</a>
+                        <li><a th:href="@{/member/delete}">[[#{EXIT_MEMBER}]]</a>
+                        <li><a th:href="@{/member/logout}">[[#{SIGN_OUT}]]</a>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/member/insert}">[[#{JOIN_MEMBER}]]</a>
+                    </ul>
+                </li>
+                <li class="dropdown dropdown-aux animate-click" data-animate-in="animated" data-animate-out="animated fadeOutDown" style="z-index:500;">
+                    <a href="#" class="dropdown-form-toggle" data-toggle="dropdown"><i class="fa fa-search"></i></a>
+                    <ul class="dropdown-menu dropdown-menu-user">
+                        <li id="dropdownForm">
+                            <div class="dropdown-form">
+                                <form class="form-horizontal form-light p-15" th:action="@{/board/search/1}" method="post" role="form">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="keyword" placeholder="키워드를 입력하세요.">
+                                        <span class="input-group-btn">
+                                            <input type="submit" class="btn btn-base" value="Go">
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+               <li>
+               <div><br>
+               <a th:href="@{/member/login}" class="btn btn-danger" th:if="${session.email==null}">[[#{SIGN_IN}]]</a>
+               <a th:href="@{/member/login}" class="btn btn-danger" th:if="${session.email!=null}">[[#{MY_INFO}]]</a>
+               </div>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+	</header>
+</div>
+</div>
+</html>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.myapp.board.dao.IBoardCategoryRepository">
+
+	<select id="selectAllCategory" resultType="com.example.myapp.board.model.BoardCategory">
+	<![CDATA[
+		SELECT 
+			category_id				AS categoryId, 
+			category_name			AS categoryName, 
+			category_description	AS categoryDescription
+		FROM board_category
+		ORDER BY category_id
+	]]>
+	</select>
+	
+	<select id="selectMaxCategoryId" resultType="int">
+	<![CDATA[
+		SELECT 
+			NVL(MAX(category_id),0) AS "categoryId"
+		FROM board_category
+	]]>
+	</select> 
+
+	<insert id="insertNewCategory" parameterType="com.example.myapp.board.model.BoardCategory">
+	<![CDATA[
+		INSERT INTO board_category
+			(category_id, category_name, category_description)
+		VALUES
+			(#{categoryId}, #{categoryName}, #{categoryDescription})
+	]]>
+	</insert>
+	
+	<update id="updateCategory" parameterType="com.example.myapp.board.model.BoardCategory">
+	<![CDATA[
+		UPDATE board_category
+		SET
+			category_name = #{categoryName}, 
+			category_description = #{categoryDescription}
+		WHERE
+			category_id = #{categoryId}
+	]]>
+	</update>
+
+	<delete id="deleteCategory" parameterType="int">
+	<![CDATA[
+		DELETE board_category 
+		WHERE category_id = #{categoryId}
+	]]>
+	</delete>
+
+</mapper>

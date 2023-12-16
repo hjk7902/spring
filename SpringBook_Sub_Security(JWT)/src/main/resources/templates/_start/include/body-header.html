@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- Body Header -->
+<div th:fragment="bodyHeader" class="container">
+<div id="divHeaderWrapper">
+	<header class="header-standard-2">     
+    <!-- MAIN NAV -->
+    <div class="navbar navbar-wp navbar-arrow mega-nav" role="navigation">
+        <div class="navbar-header">
+            <a th:href="@{/}" th:text="#{title}">회사 이름</a>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+				<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><strong th:text="#{BOARD}">게시판</strong></a>
+                    <ul class="dropdown-menu">
+                    	<li><a th:href="@{/board/cat/1}" th:text="#{BOARD}">게시판</a>
+			        	<li><a th:href="@{/board/cat/2}" th:text="#{PDS}">자료실</a>
+			        	<li><a th:href="@{/board/cat/3}" th:text='#{GALLERY}'>갤러리</a>
+					</ul>
+				</li>
+                <li class="dropdown">
+                    <a th:href="@{/member/login}" class="dropdown-toggle" data-toggle="dropdown"><strong th:text="#{MEMBER}">회원</strong></a>
+                    <ul class="dropdown-menu">
+                        <li><a th:href="@{/member/update}" th:text="#{UPDATE_USER_INFO}">개인정보 수정</a>
+                        <li><a th:href="@{/member/logout}" th:text="#{SIGN_OUT}">로그아웃</a>
+                        <li><a th:href="@{/member/delete}" th:text="#{EXIT_MEMBER}">회원 탈퇴</a>
+                        <li role="separator" class="divider"></li>
+                        <li><a th:href="@{/member/insert}" th:text="#{JOIN_MEMBER}">회원 가입</a>
+                    </ul>
+               </li>
+               <li>
+               <div><br>
+               <a th:href="@{/member/login}" class="btn btn-danger" th:if="${session.email==null}" th:text="#{SIGN_IN}">로그인</a>
+               <a th:href="@{/member/login}" class="btn btn-danger" th:if="${session.email!=null}" th:text="#{MY_INFO}">내 정보</a>
+               </div>
+               </li>
+            </ul>
+        </div>
+    </div>
+	</header>
+</div>
+</div>
+</html>

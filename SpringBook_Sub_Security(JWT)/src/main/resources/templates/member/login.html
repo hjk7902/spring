@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{/include/header :: header}"></head>
+<body>
+<div th:replace="~{/include/body-header :: bodyHeader}"></div>
+<div class="container">
+<div class="pg-opt">
+	<div class="row">
+		<div class="col-md-6 pc">
+			<h2>
+				<span th:text="#{SIGN_IN}"></span><small style="color: red"
+					th:if="${message!=null}">[[#{${message}}]]</small> <small
+					style="color: red" th:if="${param.error}">Invalid
+					username and password.</small>
+			</h2>
+		</div>
+		<div class="col-md-6">
+			<ol class="breadcrumb">
+				<li th:text="#{MEMBER}">MEMBER</li>
+				<li class="active" th:text="#{SIGN_IN}">SIGN IN</li>
+			</ol>
+		</div>
+	</div>
+</div>
+<div class="content">
+	<span sec:authorize="isAnonymous()">[인증 안됨]</span> <span
+		sec:authorize="isAuthenticated()">[인증됨]</span><br>
+	<!-- div th:if="${session.email==null}"-->
+	<div sec:authorize="isAnonymous()">
+		<form th:action="@{/member/login}" method="post"
+			class="form-horizontal">
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="id"
+					th:text="#{MEMBER_ID}">MEMBER ID</label>
+				<div class="col-sm-8">
+					<input type="text" name="userid" id="id" class="form-control"
+						placeholder="" aria-describedby="basic-addon1">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="pw"
+					th:text="#{MEMBER_PW}">MEMBER PASSWORD</label>
+				<div class="col-sm-8">
+					<input type="password" name="password" id="pw"
+						class="form-control" th:placeholder="#{MEMBER_PW}">
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="col-sm-offset-2 col-sm-8">
+					<input type="submit" class="btn btn-info" th:value="#{SIGN_IN}">
+					<input type="reset" class="btn btn-info" th:value="#{CANCEL}">
+					<a th:href="@{/member/insert}" class="btn btn-success"
+						th:text="#{INSERT_USER_INFO}">INSERT USER INFO</a>
+				</div>
+			</div>
+		</form>
+	</div>
+	<!-- 로그아웃 -->
+<!-- /* 
+	<div th:if="${session.email!=null}">
+		<h4 th:text="${session.userid}">사용자 아이디</h4>
+		<h4 th:text="${session.email}">이메일</h4>
+*/ -->
+	<div sec:authorize="isAuthenticated()">
+		<div sec:authentication="name"></div>
+		<div sec:authentication="principal.userEmail"></div>
+		<div sec:authentication="principal.authorities"></div>
+		[<a th:href="@{/member/update}" th:text="#{UPDATE_USER_INFO}">UPDATE USER INFO</a>]
+		[<a th:href="@{/member/logout}" th:text="#{SIGN_OUT}">SIGN OUT</a>]
+		[<a th:href="@{/member/delete}" th:text="#{EXIT_MEMBER}">EXIT MEMBER</a>]
+	</div>
+</div>
+</div>
+<footer th:replace="~{/include/footer :: footer}"></footer>
+</body>
+</html>

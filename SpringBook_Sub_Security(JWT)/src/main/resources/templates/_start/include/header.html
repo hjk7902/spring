@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    
+    <title th:text="#{title}">Title</title>
+    
+    <link th:href="@{/favicon.png}" rel="icon" type="image/png">
+	
+	<link rel="stylesheet" th:href="@{/css/default.css}">
+    
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+    <link rel="stylesheet" th:href="@{/css/global-style.css}" media="screen">  
+
+    <script th:src="@{/js/jquery-3.6.3.js}"></script>
+	<script th:src="@{/js/bootstrap.js}"></script>
+	
+	<script type="text/javascript">
+	$(document).ready(function() {
+	    $("#locales").change(function () {
+	        var selectedOption = $('#locales').val();
+	        if (selectedOption != ''){
+	            window.location.replace('?lang=' + selectedOption);
+	        }
+	    });
+	});
+	</script>
+</head>
