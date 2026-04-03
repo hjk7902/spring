@@ -1,5 +1,5 @@
 ## 자바 스프링 프레임워크와 스프링 부트 - 원리부터 실전까지 (2025)
-## SpringBook(Legacy)_2026-04-03.zip 파일 또는 SpringBook(Boot)_2026-04-03.zip 파일 프로젝트 임포트
+### SpringBook(Legacy)_2026-04-03.zip 파일 또는 SpringBook(Boot)_2026-04-03.zip 파일 프로젝트 임포트
 File -> Import -> General -> Existing Projects into Workspace -> Select archive file: 내려받은 zip 파일 선택 후 Finish
 
 <a href="https://bookk.co.kr/bookStore/678cc108ad5b268aef0dd2d4"><img src="https://file.bookk.co.kr/thumbnails/products/678cc108ad5b268aef0dd2d4/thumbnail?q=100&w=500"></a>
